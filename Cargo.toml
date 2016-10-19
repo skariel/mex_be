@@ -1,0 +1,6 @@
+[package]
+name = "mex_be"
+version = "0.1.0"
+authors = ["skariel"]
+
+[dependencies]
