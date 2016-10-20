@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Rust &lt;mex_be&gt;">
+    <CLASSES>
+      <root url="file://$USER_HOME$/rust/src/libstd" />
+      <root url="file://$USER_HOME$/rust/src/libcore" />
+      <root url="file://$USER_HOME$/rust/src/libcollections" />
+      <root url="file://$USER_HOME$/rust/src/liballoc" />
+      <root url="file://$USER_HOME$/rust/src/librustc_unicode" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
