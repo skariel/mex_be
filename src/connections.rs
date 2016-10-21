@@ -45,6 +45,7 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
                 .peer_addr()
                 .unwrap();
 
+
             println!("Connection from {}", ip);
 
             let message: Message = Message::text("Hello".to_string());
