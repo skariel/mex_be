@@ -1,13 +1,27 @@
 use std::thread;
-use websocket::{Server, Message, Sender, Receiver};
+use std::borrow::Cow;
+use std::string::String;
 use websocket::message::Type;
+use std::sync::{Arc, RwLock, mpsc};
 use websocket::header::WebSocketProtocol;
+use std::sync::atomic::{Ordering, AtomicBool};
+use websocket::{Server, Message, Sender, Receiver};
 
-pub fn listen_to_incomming_connections() {
+use input::Input;
+use world::World;
+
+fn to_cow_str<'s>(msg: &'s Message<'s>) -> Cow<'s, str> {
+    String::from_utf8_lossy(&*msg.payload)
+}
+
+pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
+                                       curr_world_is_1: Arc<AtomicBool>,
+                                       world1: Arc<RwLock<World>>, world2: Arc<RwLock<World>>) {
     println!("listening to incomming connections");
     let server = Server::bind("127.0.0.1:2794").unwrap();
 
     for connection in server {
+        let input_tx = input_tx.clone();
         // Spawn a new thread for each connection.
         thread::spawn(move || {
             let request = connection.unwrap().read_request().unwrap(); // Get the request
@@ -51,8 +65,16 @@ pub fn listen_to_incomming_connections() {
                     Type::Ping => {
                         let message = Message::pong(message.payload);
                         sender.send_message(&message).unwrap();
-                    }
-                    _ => sender.send_message(&message).unwrap(),
+                    },
+                    _ => {
+                        // get the message text
+                        println!("{}", &*to_cow_str(&message));
+                        if let Some(input) = Input::from_str(&*to_cow_str(&message)) {
+                            println!("its a valid input: {:?}", input);
+                            input_tx.send(input);
+                        }
+                        sender.send_message(&message).unwrap()
+                    },
                 }
             }
         });
