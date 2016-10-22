@@ -36,7 +36,7 @@ impl World {
                 Input::UpPressed => next_world.up_pressed = true,
                 Input::DownPressed => next_world.down_pressed = true,
                 Input::LeftPressed => next_world.left_pressed = true,
-                Input::RightPressed => next_world.right_pressed = true,
+                Input::RightPressed => {next_world.right_pressed = true; println!("right pressed!");},
                 Input::UpReleased => next_world.up_pressed = false,
                 Input::DownReleased => next_world.down_pressed = false,
                 Input::LeftReleased => next_world.left_pressed = false,
@@ -46,21 +46,21 @@ impl World {
 
 
         if next_world.up_pressed {
-            next_world.y = self.y + 0.01 * dt_ms;
+            next_world.y = self.y + 0.05 * dt_ms;
         }
         if next_world.down_pressed {
-            next_world.y = self.y - 0.01 * dt_ms;
+            next_world.y = self.y - 0.05 * dt_ms;
         }
         if next_world.left_pressed {
-            next_world.x = self.x - 0.01 * dt_ms;
+            next_world.x = self.x - 0.05 * dt_ms;
         }
         if next_world.right_pressed {
-            next_world.x = self.x + 0.01 * dt_ms;
+            next_world.x = self.x + 0.05 * dt_ms;
         }
         next_world.elapsed_ms += dt_ms
     }
     pub fn to_json(&self) -> String {
-        format!("{{t:{}, x:{}, y:{}}}", self.elapsed_ms.to_string(), self.x.to_string(), self.y.to_string())
+        format!("{{\"t\":{}, \"x\":{}, \"y\":{}}}", self.elapsed_ms.to_string(), self.x.to_string(), self.y.to_string())
     }
     pub fn is_world_request(s: &str) -> bool {
         s.eq("w")

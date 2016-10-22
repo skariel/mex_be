@@ -74,7 +74,7 @@ fn main() {
     let world1 = Arc::new(RwLock::new(World::new()));
     let world2 = Arc::new(RwLock::new(World::new()));
 
-    // running th game loop
+    // running the game loop
 
     let ic1 = inputs1.clone();
     let ic2 = inputs2.clone();

@@ -72,14 +72,14 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
                     },
                     _ => {
                         // get the message text
-                        println!("{}", &*to_cow_str(&message));
+                        //println!("{}", &*to_cow_str(&message));
                         if let Some(input) = Input::from_str(&*to_cow_str(&message)) {
                             println!("its a valid input: {:?}", input);
                             input_tx.send(input).unwrap();
                             continue
                         }
                         if World::is_world_request(&*to_cow_str(&message)) {
-                            println!("its a world request!");
+                            //println!("its a world request!");
 
                             let world = if curr_world_is_1.load(Ordering::Relaxed) {
                                 world1.clone()
@@ -92,7 +92,6 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
                             sender.send_message(&Message::text(&(*world.to_json()))).unwrap();
                             continue
                         }
-                        sender.send_message(&message).unwrap()
                     },
                 }
             }
