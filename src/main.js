@@ -33,6 +33,7 @@ function setup() {
   );
   console.log("robot image loaded");
   robot.scale.set(0.1,0.1);
+  robot.crossOrigin = '';
   stage.addChild(robot);
   gameLoop();
 }
