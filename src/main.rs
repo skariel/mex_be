@@ -31,11 +31,9 @@ fn model_loop(config: Arc<Config>, curr_world_is_1: Arc<AtomicBool>,
         time.elapsed().unwrap().as_secs() as f64 * 1000.0 +
             time.elapsed().unwrap().subsec_nanos() as f64 / 1000000.0
     };
-    let mut frame: u64 = 0;
 
     loop {
         let t1 = elapsed_ms();
-        frame += 1;
         let curr_world;
         let mut next_world;
         let mut next_inputs;

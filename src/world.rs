@@ -33,14 +33,14 @@ impl World {
 
         for input in inputs {
             match *input {
-                Input::Up_pressed => next_world.up_pressed = true,
-                Input::Down_pressed => next_world.down_pressed = true,
-                Input::Left_pressed => next_world.left_pressed = true,
-                Input::Right_pressed => next_world.right_pressed = true,
-                Input::Up_released => next_world.up_pressed = false,
-                Input::Down_released => next_world.down_pressed = false,
-                Input::Left_released => next_world.left_pressed = false,
-                Input::Right_released => next_world.right_pressed = false,
+                Input::UpPressed => next_world.up_pressed = true,
+                Input::DownPressed => next_world.down_pressed = true,
+                Input::LeftPressed => next_world.left_pressed = true,
+                Input::RightPressed => next_world.right_pressed = true,
+                Input::UpReleased => next_world.up_pressed = false,
+                Input::DownReleased => next_world.down_pressed = false,
+                Input::LeftReleased => next_world.left_pressed = false,
+                Input::RightReleased => next_world.right_pressed = false,
             }
         }
 

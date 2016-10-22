@@ -75,7 +75,7 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
                         println!("{}", &*to_cow_str(&message));
                         if let Some(input) = Input::from_str(&*to_cow_str(&message)) {
                             println!("its a valid input: {:?}", input);
-                            input_tx.send(input);
+                            input_tx.send(input).unwrap();
                             continue
                         }
                         if World::is_world_request(&*to_cow_str(&message)) {

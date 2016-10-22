@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="670aa62e-e2e9-4a59-9ee1-c6e9d9a728d8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Cargo__mex_be_.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Cargo__mex_be_.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/connections.rs" afterPath="$PROJECT_DIR$/src/connections.rs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/input.rs" afterPath="$PROJECT_DIR$/src/input.rs" />
@@ -29,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.rs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.rs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="539">
-              <caret line="98" column="17" selection-start-line="98" selection-start-column="17" selection-end-line="98" selection-end-column="17" />
+            <state relative-caret-position="224">
+              <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -42,14 +41,14 @@
       <file leaf-file-name="input.rs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/input.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+            <state relative-caret-position="180">
+              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="world.rs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="world.rs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/world.rs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="509">
@@ -62,8 +61,8 @@
       <file leaf-file-name="connections.rs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/connections.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
+            <state relative-caret-position="224">
+              <caret line="77" column="57" selection-start-line="77" selection-start-column="57" selection-end-line="77" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -112,10 +111,10 @@
         <option value="$PROJECT_DIR$/Cargo.toml" />
         <option value="$PROJECT_DIR$/connections.rs" />
         <option value="$PROJECT_DIR$/src/fe.html" />
-        <option value="$PROJECT_DIR$/src/connections.rs" />
-        <option value="$PROJECT_DIR$/src/input.rs" />
-        <option value="$PROJECT_DIR$/src/main.rs" />
         <option value="$PROJECT_DIR$/src/world.rs" />
+        <option value="$PROJECT_DIR$/src/input.rs" />
+        <option value="$PROJECT_DIR$/src/connections.rs" />
+        <option value="$PROJECT_DIR$/src/main.rs" />
       </list>
     </option>
   </component>
@@ -523,7 +522,14 @@
       <option name="project" value="LOCAL" />
       <updated>1477084069768</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="more content">
+      <created>1477126306808</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1477126306808</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -598,7 +604,8 @@
     <MESSAGE value="starting websockets" />
     <MESSAGE value="inputs" />
     <MESSAGE value="testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing" />
+    <MESSAGE value="more content" />
+    <option name="LAST_COMMIT_MESSAGE" value="more content" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -721,34 +728,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/connections.rs">
+    <entry file="file://$PROJECT_DIR$/src/world.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="98" column="17" selection-start-line="98" selection-start-column="17" selection-end-line="98" selection-end-column="17" />
+        <state relative-caret-position="509">
+          <caret line="59" column="22" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/input.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+        <state relative-caret-position="180">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/world.rs">
+    <entry file="file://$PROJECT_DIR$/src/connections.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="59" column="22" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
+        <state relative-caret-position="224">
+          <caret line="77" column="57" selection-start-line="77" selection-start-column="57" selection-end-line="77" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
           <folding />
         </state>
       </provider>
