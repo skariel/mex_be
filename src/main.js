@@ -1,4 +1,3 @@
-
 renderer = PIXI.autoDetectRenderer(
   window.innerWidth, window.innerHeight,
   {antialias: true, transparent: false, resolution: 1.0}
@@ -42,7 +41,7 @@ var socket = new WebSocket("ws://127.0.0.1:2794", "rust-websocket");
 socket.onmessage = function (event) {
     if (event.data==="Hello") {
         console.log("connected to server");
-        setInterval(function f() {send("w");}, 50);
+        setInterval(function f() {send("w");}, 16);
     } else {
         xy = JSON.parse(event.data);
         robot.position.set(xy.x % window.innerWidth, xy.y % window.innerWidth);

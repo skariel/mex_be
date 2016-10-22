@@ -1,4 +1,5 @@
 use std::thread;
+use std::time;
 use std::borrow::Cow;
 use std::string::String;
 use websocket::message::Type;
@@ -56,8 +57,21 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
 
             let (mut sender, mut receiver) = client.split();
 
+
+            let time = time::SystemTime::now();
+            let elapsed_ms = || -> f64 {
+                time.elapsed().unwrap().as_secs() as f64 * 1000.0 +
+                    time.elapsed().unwrap().subsec_nanos() as f64 / 1000000.0
+            };
+            let mut message_count = 0;
+
             for message in receiver.incoming_messages() {
                 let message: Message = message.unwrap();
+
+                message_count += 1;
+                if message_count % 100 == 0 {
+                    println!("rate: {:?}", message_count as f64/elapsed_ms()*1000.0);
+                }
 
                 match message.opcode {
                     Type::Close => {

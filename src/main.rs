@@ -53,9 +53,9 @@ fn model_loop(config: Arc<Config>, curr_world_is_1: Arc<AtomicBool>,
 
         next_inputs.clear();
 
-        curr_world_is_1.store(!curr_world_is_1.load(Ordering::Relaxed), Ordering::Relaxed);
         let dt = config.delay_between_snapshots_ms as f64 - (elapsed_ms() - t1);
         thread::sleep(time::Duration::from_millis(dt as u64));
+        curr_world_is_1.store(!curr_world_is_1.load(Ordering::Relaxed), Ordering::Relaxed);
     };
 }
 
