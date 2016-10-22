@@ -22,6 +22,9 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
 
     for connection in server {
         let input_tx = input_tx.clone();
+        let curr_world_is_1 = curr_world_is_1.clone();
+        let world1 = world1.clone();
+        let world2 = world2.clone();
         // Spawn a new thread for each connection.
         thread::spawn(move || {
             let request = connection.unwrap().read_request().unwrap(); // Get the request
@@ -73,6 +76,21 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
                         if let Some(input) = Input::from_str(&*to_cow_str(&message)) {
                             println!("its a valid input: {:?}", input);
                             input_tx.send(input);
+                            continue
+                        }
+                        if World::is_world_request(&*to_cow_str(&message)) {
+                            println!("its a world request!");
+
+                            let world = if curr_world_is_1.load(Ordering::Relaxed) {
+                                world1.clone()
+                            } else {
+                                world2.clone()
+                            };
+
+                            let world = world.read().unwrap();
+
+                            sender.send_message(&Message::text(&(*world.to_json()))).unwrap();
+                            continue
                         }
                         sender.send_message(&message).unwrap()
                     },

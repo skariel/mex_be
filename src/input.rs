@@ -3,19 +3,27 @@ use std::sync::atomic::{Ordering, AtomicBool};
 
 #[derive(Debug)]
 pub enum Input {
-    Up,
-    Down,
-    Left,
-    Right,
+    Up_pressed,
+    Down_pressed,
+    Left_pressed,
+    Right_pressed,
+    Up_released,
+    Down_released,
+    Left_released,
+    Right_released,
 }
 
 impl Input {
     pub fn from_str(s: &str) -> Option<Input> {
         match s {
-            "up" => Some(Input::Up),
-            "down" => Some(Input::Down),
-            "left" => Some(Input::Left),
-            "right" => Some(Input::Right),
+            "i:up_pressed" => Some(Input::Up_pressed),
+            "i:down_pressed" => Some(Input::Down_pressed),
+            "i:left_pressed" => Some(Input::Left_pressed),
+            "i:right_pressed" => Some(Input::Right_pressed),
+            "i:up_released" => Some(Input::Up_released),
+            "i:down_released" => Some(Input::Down_released),
+            "i:left_released" => Some(Input::Left_released),
+            "i:right_released" => Some(Input::Right_released),
             _ => None,
         }
     }

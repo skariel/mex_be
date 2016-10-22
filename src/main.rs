@@ -73,20 +73,10 @@ fn main() {
     let config = Arc::new(Config {
         delay_between_snapshots_ms: 50,
     });
-    let world1 = Arc::new(RwLock::new(World {
-        x: 0.0,
-        y: 0.0,
-        elapsed_ms: 0.0,
-    }));
-    let world2 = Arc::new(RwLock::new(World {
-        x: 0.0,
-        y: 0.0,
-        elapsed_ms: 0.0,
-    }));
-
+    let world1 = Arc::new(RwLock::new(World::new()));
+    let world2 = Arc::new(RwLock::new(World::new()));
 
     // running th game loop
-
 
     let ic1 = inputs1.clone();
     let ic2 = inputs2.clone();
