@@ -102,7 +102,6 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
                                     // get the message text
                                     //println!("{}", &*to_cow_str(&message));
                                     if let Some(input) = Input::from_str(&*to_cow_str(&message)) {
-                                        println!("its a valid input: {:?}", input);
                                         input_tx.send(input).unwrap();
                                         continue
                                     }
@@ -118,7 +117,7 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
                                 world1.clone()
                             };
 
-                            let mut msg = "".into();
+                            let msg;
                             {
                                 let read_world = world.read().unwrap();
                                 msg = String::from(&(*read_world.to_json()));

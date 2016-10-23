@@ -35,10 +35,8 @@ pub fn merge_inputs(input_rx: mpsc::Receiver<Input>,
     println!("merging inputs!");
     for input in input_rx {
         let mut inputs = if curr_world_is_1.load(Ordering::Relaxed) {
-            println!("merging input to i1");
             inputs1.write().unwrap()
         } else {
-            println!("merging input to i2");
             inputs2.write().unwrap()
         };
         inputs.push(input);
