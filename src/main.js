@@ -30,21 +30,14 @@ function setup() {
 }
 
 function interpolate_world() {
-    // TODO: implement!
-    //    robot.position.set(xy.x % window.innerWidth, xy.y % window.innerWidth);
-
     if (!time_has_started) {
         return;
     }
 
     t = performance.now() - t0 + world_t0;
 
-    while ((worlds.length>1) && (worlds[1].t<t)) {
+    while ((worlds.length>2) && (worlds[1].t<(t-0.01))) {
         worlds.shift();
-    }
-
-    if (worlds.length<2) {
-        return;
     }
 
     ti = worlds[0].t;
