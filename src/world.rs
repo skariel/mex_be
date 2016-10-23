@@ -62,7 +62,4 @@ impl World {
     pub fn to_json(&self) -> String {
         format!("{{\"t\":{}, \"x\":{}, \"y\":{}}}", self.elapsed_ms.to_string(), self.x.to_string(), self.y.to_string())
     }
-    pub fn is_world_request(s: &str) -> bool {
-        s.eq("w")
-    }
 }

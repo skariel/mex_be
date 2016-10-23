@@ -31,8 +31,15 @@ fn model_loop(config: Arc<Config>, curr_world_is_1: Arc<AtomicBool>,
         time.elapsed().unwrap().as_secs() as f64 * 1000.0 +
             time.elapsed().unwrap().subsec_nanos() as f64 / 1000000.0
     };
+    let mut frames = 0;
 
+    curr_world_is_1.store(false, Ordering::Relaxed);
     loop {
+        curr_world_is_1.store(!curr_world_is_1.load(Ordering::Relaxed), Ordering::Relaxed);
+        frames += 1;
+        if frames % 50 == 0 {
+            println!("frames: {:?}", frames);
+        }
         let t1 = elapsed_ms();
         let curr_world;
         let mut next_world;
@@ -55,7 +62,6 @@ fn model_loop(config: Arc<Config>, curr_world_is_1: Arc<AtomicBool>,
 
         let dt = config.delay_between_snapshots_ms as f64 - (elapsed_ms() - t1);
         thread::sleep(time::Duration::from_millis(dt as u64));
-        curr_world_is_1.store(!curr_world_is_1.load(Ordering::Relaxed), Ordering::Relaxed);
     };
 }
 

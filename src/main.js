@@ -37,11 +37,16 @@ function setup() {
   gameLoop();
 }
 
-var socket = new WebSocket("ws://127.0.0.1:2794", "rust-websocket");
-socket.onmessage = function (event) {
+var input_socket = new WebSocket("ws://127.0.0.1:2794", "input-websocket");
+var world_socket = new WebSocket("ws://127.0.0.1:2794", "world-websocket");
+input_socket.onmessage = function (event) {
     if (event.data==="Hello") {
-        console.log("connected to server");
-        setInterval(function f() {send("w");}, 16);
+        console.log("input socket connected to server");
+    }
+};
+world_socket.onmessage = function (event) {
+    if (event.data==="Hello") {
+        console.log("world socket connected to server");
     } else {
         xy = JSON.parse(event.data);
         robot.position.set(xy.x % window.innerWidth, xy.y % window.innerWidth);
@@ -51,7 +56,7 @@ socket.onmessage = function (event) {
 };
 
 function send(txt) {
-    socket.send(txt);
+    input_socket.send(txt);
 }
 
 var up = false;
@@ -65,28 +70,28 @@ window.onkeydown = function(e) {
             return;
         }
         up = true;
-        send("i:up_pressed")
+        send("up_pressed")
     } else
     if (e.keyCode==38) {
         if (down) {
             return;
         }
         down = true;
-        send("i:down_pressed")
+        send("down_pressed")
     } else
     if (e.keyCode==37) {
         if (left) {
             return;
         }
         left = true;
-        send("i:left_pressed")
+        send("left_pressed")
     } else
     if (e.keyCode==39) {
         if (right) {
             return;
         }
         right = true;
-        send("i:right_pressed")
+        send("right_pressed")
     }
 }
 window.onkeyup = function(e) {
@@ -95,27 +100,27 @@ window.onkeyup = function(e) {
             return;
         }
         up = false;
-        send("i:up_released")
+        send("up_released")
     } else
     if (e.keyCode==38) {
         if (!down) {
             return;
         }
         down = false;
-        send("i:down_released")
+        send("down_released")
     } else
     if (e.keyCode==37) {
         if (!left) {
             return;
         }
         left = false;
-        send("i:left_released")
+        send("left_released")
     } else
     if (e.keyCode==39) {
         if (!right) {
             return;
         }
         right = false;
-        send("i:right_released")
+        send("right_released")
     }
 }

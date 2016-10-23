@@ -16,14 +16,14 @@ pub enum Input {
 impl Input {
     pub fn from_str(s: &str) -> Option<Input> {
         match s {
-            "i:up_pressed" => Some(Input::UpPressed),
-            "i:down_pressed" => Some(Input::DownPressed),
-            "i:left_pressed" => Some(Input::LeftPressed),
-            "i:right_pressed" => Some(Input::RightPressed),
-            "i:up_released" => Some(Input::UpReleased),
-            "i:down_released" => Some(Input::DownReleased),
-            "i:left_released" => Some(Input::LeftReleased),
-            "i:right_released" => Some(Input::RightReleased),
+            "up_pressed" => Some(Input::UpPressed),
+            "down_pressed" => Some(Input::DownPressed),
+            "left_pressed" => Some(Input::LeftPressed),
+            "right_pressed" => Some(Input::RightPressed),
+            "up_released" => Some(Input::UpReleased),
+            "down_released" => Some(Input::DownReleased),
+            "left_released" => Some(Input::LeftReleased),
+            "right_released" => Some(Input::RightReleased),
             _ => None,
         }
     }
