@@ -75,7 +75,7 @@ fn main() {
     let (input_tx, input_rx) = mpsc::channel::<Input>();
     let curr_world_is_1 = Arc::new(AtomicBool::new(true));
     let config = Arc::new(Config {
-        delay_between_snapshots_ms: 50,
+        delay_between_snapshots_ms: 30,
     });
     let world1 = Arc::new(RwLock::new(World::new()));
     let world2 = Arc::new(RwLock::new(World::new()));
