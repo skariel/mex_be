@@ -36,7 +36,7 @@ impl World {
                 Input::UpPressed => next_world.up_pressed = true,
                 Input::DownPressed => next_world.down_pressed = true,
                 Input::LeftPressed => next_world.left_pressed = true,
-                Input::RightPressed => {next_world.right_pressed = true; println!("right pressed!");},
+                Input::RightPressed => next_world.right_pressed = true,
                 Input::UpReleased => next_world.up_pressed = false,
                 Input::DownReleased => next_world.down_pressed = false,
                 Input::LeftReleased => next_world.left_pressed = false,
