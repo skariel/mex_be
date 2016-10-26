@@ -5,4 +5,4 @@ authors = ["skariel"]
 
 [dependencies]
 clippy = "*"
-websocket = "0.17.1"
+websocket = "*"
