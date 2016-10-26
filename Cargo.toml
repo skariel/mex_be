@@ -6,3 +6,4 @@ authors = ["skariel"]
 [dependencies]
 clippy = "*"
 websocket = "*"
+parking_lot = {version = "0.3", features = ["nightly"]}

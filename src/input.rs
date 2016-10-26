@@ -1,4 +1,5 @@
-use std::sync::{Arc, mpsc, RwLock};
+use std::sync::{Arc, mpsc};
+use parking_lot::RwLock;
 use std::sync::atomic::{Ordering, AtomicBool};
 
 #[derive(Debug)]
@@ -35,9 +36,9 @@ pub fn merge_inputs(input_rx: mpsc::Receiver<Input>,
     println!("merging inputs!");
     for input in input_rx {
         let mut inputs = if curr_world_is_1.load(Ordering::Relaxed) {
-            inputs1.write().unwrap()
+            inputs1.write()
         } else {
-            inputs2.write().unwrap()
+            inputs2.write()
         };
         inputs.push(input);
     }

@@ -2,11 +2,13 @@
 #![plugin(clippy)]
 
 extern crate websocket;
+extern crate parking_lot;
 
 use std::time;
 use std::thread;
 use std::vec::Vec;
-use std::sync::{mpsc, Arc, RwLock};
+use std::sync::{mpsc, Arc};
+use parking_lot::RwLock;
 use std::sync::atomic::{Ordering, AtomicBool};
 
 mod world;
@@ -46,13 +48,13 @@ fn model_loop(config: Arc<Config>, curr_world_is_1: Arc<AtomicBool>,
         let mut next_inputs;
 
         if curr_world_is_1.load(Ordering::Relaxed) {
-            next_world = world2.write().unwrap();
-            curr_world = world1.read().unwrap();
-            next_inputs = inputs2.write().unwrap();
+            next_world = world2.write();
+            curr_world = world1.read();
+            next_inputs = inputs2.write();
         } else {
-            next_world = world1.write().unwrap();
-            curr_world = world2.read().unwrap();
-            next_inputs = inputs1.write().unwrap();
+            next_world = world1.write();
+            curr_world = world2.read();
+            next_inputs = inputs1.write();
         }
 
         let dt: f64 = elapsed_ms() as f64 - curr_world.elapsed_ms;

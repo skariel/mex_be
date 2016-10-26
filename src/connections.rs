@@ -3,7 +3,8 @@ use std::time;
 use std::borrow::Cow;
 use std::string::String;
 use websocket::message::Type;
-use std::sync::{Arc, RwLock, mpsc};
+use std::sync::{Arc, mpsc};
+use parking_lot::RwLock;
 use websocket::header::WebSocketProtocol;
 use std::sync::atomic::{Ordering, AtomicBool};
 use websocket::{Server, Message, Sender, Receiver};
@@ -119,7 +120,7 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
 
                             let msg;
                             {
-                                let read_world = world.read().unwrap();
+                                let read_world = world.read();
                                 msg = String::from(&(*read_world.to_json()));
                             }
                             sender.send_message(&Message::text(msg.as_str())).unwrap();
