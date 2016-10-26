@@ -1,6 +1,7 @@
 #![feature(plugin)]
 #![plugin(clippy)]
 
+extern crate stash;
 extern crate websocket;
 extern crate parking_lot;
 
@@ -8,11 +9,13 @@ use std::time;
 use std::thread;
 use std::vec::Vec;
 use std::sync::{mpsc, Arc};
-use parking_lot::RwLock;
 use std::sync::atomic::{Ordering, AtomicBool};
+
+use parking_lot::RwLock;
 
 mod world;
 mod input;
+mod sprite;
 mod connections;
 
 use world::World;
@@ -57,7 +60,7 @@ fn model_loop(config: Arc<Config>, curr_world_is_1: Arc<AtomicBool>,
             next_inputs = inputs1.write();
         }
 
-        let dt: f64 = elapsed_ms() as f64 - curr_world.elapsed_ms;
+        let dt: f32 = elapsed_ms() as f32 - curr_world.elapsed_ms;
         curr_world.advance(&mut *next_world, dt, &mut *next_inputs);
 
         next_inputs.clear();

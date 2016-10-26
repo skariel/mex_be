@@ -2,11 +2,13 @@ use std::thread;
 use std::time;
 use std::borrow::Cow;
 use std::string::String;
-use websocket::message::Type;
 use std::sync::{Arc, mpsc};
-use parking_lot::RwLock;
-use websocket::header::WebSocketProtocol;
 use std::sync::atomic::{Ordering, AtomicBool};
+
+use parking_lot::RwLock;
+
+use websocket::message::Type;
+use websocket::header::WebSocketProtocol;
 use websocket::{Server, Message, Sender, Receiver};
 
 use input::Input;

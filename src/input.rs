@@ -1,6 +1,7 @@
 use std::sync::{Arc, mpsc};
-use parking_lot::RwLock;
 use std::sync::atomic::{Ordering, AtomicBool};
+
+use parking_lot::RwLock;
 
 #[derive(Debug)]
 pub enum Input {
