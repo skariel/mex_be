@@ -26,15 +26,18 @@ struct Config {
     pub delay_between_snapshots_ms: u64,
 }
 
-fn model_loop(config: Arc<Config>, curr_world_is_1: Arc<AtomicBool>,
-              world1: Arc<RwLock<World>>, world2: Arc<RwLock<World>>,
-              inputs1: Arc<RwLock<Vec<Input>>>, inputs2: Arc<RwLock<Vec<Input>>>) {
+fn model_loop(config: Arc<Config>,
+              curr_world_is_1: Arc<AtomicBool>,
+              world1: Arc<RwLock<World>>,
+              world2: Arc<RwLock<World>>,
+              inputs1: Arc<RwLock<Vec<Input>>>,
+              inputs2: Arc<RwLock<Vec<Input>>>) {
     println!("looping the model");
 
     let time = time::SystemTime::now();
     let elapsed_ms = || -> f64 {
         time.elapsed().unwrap().as_secs() as f64 * 1000.0 +
-            time.elapsed().unwrap().subsec_nanos() as f64 / 1000000.0
+        time.elapsed().unwrap().subsec_nanos() as f64 / 1000000.0
     };
     let mut frames = 0;
 
@@ -67,7 +70,7 @@ fn model_loop(config: Arc<Config>, curr_world_is_1: Arc<AtomicBool>,
 
         let dt = config.delay_between_snapshots_ms as f64 - (elapsed_ms() - t1);
         thread::sleep(time::Duration::from_millis(dt as u64));
-    };
+    }
 }
 
 fn main() {
@@ -79,9 +82,7 @@ fn main() {
     let inputs2 = Arc::new(RwLock::new(Vec::new()));
     let (input_tx, input_rx) = mpsc::channel::<Input>();
     let curr_world_is_1 = Arc::new(AtomicBool::new(true));
-    let config = Arc::new(Config {
-        delay_between_snapshots_ms: 30,
-    });
+    let config = Arc::new(Config { delay_between_snapshots_ms: 30 });
     let world1 = Arc::new(RwLock::new(World::new()));
     let world2 = Arc::new(RwLock::new(World::new()));
 

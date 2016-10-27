@@ -21,7 +21,7 @@ pub struct Hero {
 }
 impl Hero {
     pub fn drift(&mut self, dt_ms: f32) {
-        let fact = 0.05*dt_ms;
+        let fact = 0.05 * dt_ms;
         if self.up_pressed {
             self.pos.1 += fact;
         }

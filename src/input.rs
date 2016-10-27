@@ -33,7 +33,8 @@ impl Input {
 
 pub fn merge_inputs(input_rx: mpsc::Receiver<Input>,
                     curr_world_is_1: Arc<AtomicBool>,
-                    inputs1: Arc<RwLock<Vec<Input>>>, inputs2: Arc<RwLock<Vec<Input>>>) {
+                    inputs1: Arc<RwLock<Vec<Input>>>,
+                    inputs2: Arc<RwLock<Vec<Input>>>) {
     println!("merging inputs!");
     for input in input_rx {
         let mut inputs = if curr_world_is_1.load(Ordering::Relaxed) {
@@ -44,4 +45,3 @@ pub fn merge_inputs(input_rx: mpsc::Receiver<Input>,
         inputs.push(input);
     }
 }
-

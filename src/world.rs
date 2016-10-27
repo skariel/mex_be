@@ -29,7 +29,7 @@ impl World {
         into.hero_key = self.hero_key;
         into.elapsed_ms = self.elapsed_ms;
         for (k, v) in &self.sprites {
-            if let Some(into_v)=into.sprites.get_mut(k) {
+            if let Some(into_v) = into.sprites.get_mut(k) {
                 *into_v = *v;
             }
         }
@@ -69,6 +69,9 @@ impl World {
     }
     pub fn to_json(&self) -> String {
         let hero = self.hero();
-        format!("{{\"t\":{}, \"x\":{}, \"y\":{}}}", self.elapsed_ms.to_string(), hero.pos.0.to_string(), hero.pos.1.to_string())
+        format!("{{\"t\":{}, \"x\":{}, \"y\":{}}}",
+                self.elapsed_ms.to_string(),
+                hero.pos.0.to_string(),
+                hero.pos.1.to_string())
     }
 }

@@ -26,7 +26,8 @@ fn to_cow_str<'s>(msg: &'s Message<'s>) -> Cow<'s, str> {
 
 pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
                                        curr_world_is_1: Arc<AtomicBool>,
-                                       world1: Arc<RwLock<World>>, world2: Arc<RwLock<World>>) {
+                                       world1: Arc<RwLock<World>>,
+                                       world2: Arc<RwLock<World>>) {
     println!("listening to incomming connections");
     let server = Server::bind("127.0.0.1:2794").unwrap();
 
@@ -76,7 +77,7 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
                 let time = time::SystemTime::now();
                 let elapsed_ms = || -> f64 {
                     time.elapsed().unwrap().as_secs() as f64 * 1000.0 +
-                        time.elapsed().unwrap().subsec_nanos() as f64 / 1000000.0
+                    time.elapsed().unwrap().subsec_nanos() as f64 / 1000000.0
                 };
                 let mut message_count = 0;
 
@@ -87,7 +88,8 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
 
                             message_count += 1;
                             if message_count % 100 == 0 {
-                                println!("rate: {:?}", message_count as f64 / elapsed_ms() * 1000.0);
+                                println!("rate: {:?}",
+                                         message_count as f64 / elapsed_ms() * 1000.0);
                             }
 
                             match message.opcode {
@@ -96,22 +98,22 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
                                     sender.send_message(&message).unwrap();
                                     println!("Client {} disconnected", ip);
                                     return;
-                                },
+                                }
                                 Type::Ping => {
                                     let message = Message::pong(message.payload);
                                     sender.send_message(&message).unwrap();
-                                },
+                                }
                                 _ => {
                                     // get the message text
-                                    //println!("{}", &*to_cow_str(&message));
+                                    // println!("{}", &*to_cow_str(&message));
                                     if let Some(input) = Input::from_str(&*to_cow_str(&message)) {
                                         input_tx.send(input).unwrap();
-                                        continue
+                                        continue;
                                     }
-                                },
+                                }
                             }
                         }
-                    },
+                    }
                     Protocol::World => {
                         loop {
                             let world = if curr_world_is_1.load(Ordering::Relaxed) {
