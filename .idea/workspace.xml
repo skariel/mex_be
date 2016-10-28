@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="670aa62e-e2e9-4a59-9ee1-c6e9d9a728d8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Cargo__mex_be_.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Cargo__mex_be_.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/connections.rs" afterPath="$PROJECT_DIR$/src/connections.rs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fethyree.html" afterPath="$PROJECT_DIR$/src/fethyree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cargo.lock" afterPath="$PROJECT_DIR$/Cargo.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cargo.toml" afterPath="$PROJECT_DIR$/Cargo.toml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainthree.js" afterPath="$PROJECT_DIR$/src/mainthree.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sprite.rs" afterPath="$PROJECT_DIR$/src/sprite.rs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/world.rs" afterPath="$PROJECT_DIR$/src/world.rs" />
     </list>
     <ignored path="mex_be.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,21 +57,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cargo.toml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Cargo.toml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Cargo.toml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+            <state relative-caret-position="120">
+              <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="world.rs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="world.rs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/world.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="33" column="19" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
+            <state relative-caret-position="639">
+              <caret line="62" column="62" selection-start-line="62" selection-start-column="62" selection-end-line="62" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -83,8 +80,8 @@
       <file leaf-file-name="sprite.rs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sprite.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+            <state relative-caret-position="159">
+              <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -103,8 +100,8 @@
       <file leaf-file-name="mainthree.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mainthree.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="63" selection-start-line="4" selection-start-column="63" selection-end-line="4" selection-end-column="63" />
+            <state relative-caret-position="405">
+              <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -135,15 +132,15 @@
         <option value="$PROJECT_DIR$/src/fe.html" />
         <option value="$PROJECT_DIR$/src/main.js" />
         <option value="$PROJECT_DIR$/src/stork.js" />
-        <option value="$PROJECT_DIR$/Cargo.toml" />
         <option value="$PROJECT_DIR$/src/input.rs" />
         <option value="$PROJECT_DIR$/sprite.rs" />
         <option value="$PROJECT_DIR$/src/main.rs" />
         <option value="$PROJECT_DIR$/src/connections.rs" />
         <option value="$PROJECT_DIR$/src/sprite.rs" />
         <option value="$PROJECT_DIR$/src/fethyree.html" />
-        <option value="$PROJECT_DIR$/src/mainthree.js" />
         <option value="$PROJECT_DIR$/src/world.rs" />
+        <option value="$PROJECT_DIR$/src/mainthree.js" />
+        <option value="$PROJECT_DIR$/Cargo.toml" />
       </list>
     </option>
   </component>
@@ -668,7 +665,14 @@
       <option name="project" value="LOCAL" />
       <updated>1477516989007</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="be rendering">
+      <created>1477686716437</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1477686716437</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TodoView">
@@ -754,7 +758,8 @@
     <MESSAGE value="parking_lot" />
     <MESSAGE value="nightly" />
     <MESSAGE value="stash" />
-    <option name="LAST_COMMIT_MESSAGE" value="stash" />
+    <MESSAGE value="be rendering" />
+    <option name="LAST_COMMIT_MESSAGE" value="be rendering" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1025,26 +1030,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cargo.toml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/connections.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="639">
           <caret line="128" column="4" selection-start-line="128" selection-start-column="4" selection-end-line="128" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sprite.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -1057,18 +1046,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainthree.js">
+    <entry file="file://$PROJECT_DIR$/src/world.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="63" selection-start-line="4" selection-start-column="63" selection-end-line="4" selection-end-column="63" />
+        <state relative-caret-position="639">
+          <caret line="62" column="62" selection-start-line="62" selection-start-column="62" selection-end-line="62" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/world.rs">
+    <entry file="file://$PROJECT_DIR$/src/sprite.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="33" column="19" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
+        <state relative-caret-position="159">
+          <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainthree.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cargo.toml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
           <folding />
         </state>
       </provider>

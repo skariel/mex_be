@@ -194,16 +194,11 @@ function msg_push_as_world(msg) {
     worlds.push(world);
 }
 
-// var xx = 0
 world_socket.onmessage = function (event) {
     if (event.data==="Hello") {
         console.log("world socket connected to server");
     } else {
         msg_push_as_world(JSON.parse(event.data));
-//        if (xx<3) {
-//            console.log(event.data);
-//            xx += 1;
-//        }
         if ((!time_has_started)&&(worlds.length==3)) {
             time_has_started = true;
             world_t0 = worlds[0].t;

@@ -6,5 +6,6 @@ authors = ["skariel"]
 [dependencies]
 clippy = "*"
 stash = "*"
+spade = "*"
 websocket = {version = "*", features = ["nightly"]}
 parking_lot = {version = "*", features = ["nightly"]}
