@@ -12,7 +12,7 @@ use websocket::header::WebSocketProtocol;
 use websocket::{Server, Message, Sender, Receiver};
 
 use input::Input;
-use world::World;
+use world::{World, MsgType};
 
 #[derive(Debug, Clone, Copy)]
 enum Protocol {
@@ -115,6 +115,8 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
                         }
                     }
                     Protocol::World => {
+                        // sending first full message. Later we can just diff
+                        let mut msg_type = MsgType::Full;
                         loop {
                             let world = if curr_world_is_1.load(Ordering::Relaxed) {
                                 world2.clone()
@@ -125,9 +127,13 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
                             let msg;
                             {
                                 let read_world = world.read();
-                                msg = String::from(&(*read_world.to_json()));
+                                msg = String::from(&(*read_world.as_frontend_msg(msg_type)));
                             }
-                            sender.send_message(&Message::text(msg.as_str())).unwrap();
+                            match sender.send_message(&Message::text(msg.as_str())) {
+                                Ok(_) => (),
+                                Err(_) => return,
+                            };
+                            msg_type = MsgType::Diff;
                         }
                     }
                 }

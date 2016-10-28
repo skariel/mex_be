@@ -2,7 +2,7 @@ var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
 var renderer = new THREE.WebGLRenderer({antialias: false, precision: "lowp"});
-renderer.setSize( window.innerWidth/2, window.innerHeight/2 , false);
+renderer.setSize( window.innerWidth/1.3, window.innerHeight/1.3 , false);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.BasicShadowMap;
 renderer.gammaInput = true;
@@ -14,49 +14,10 @@ var geometry_floor = new THREE.BoxGeometry( 5, 5, 1 );
 var material_box = new THREE.MeshStandardMaterial( { color: 0xffffff, map: new THREE.TextureLoader().load("images/box_3.png") } );
 var material_floor = new THREE.MeshStandardMaterial( { color: 0xffffff, map: new THREE.TextureLoader().load("images/floor_1.jpg") } );
 
-var light = new THREE.AmbientLight( 0xffffff, 0.0 ); // soft white light
 
-for (x=-3; x<3;x++) {
-    for (y=-3; y<3;y++) {
-        var cube = new THREE.Mesh( geometry_floor, material_floor );
-        cube.receiveShadow = true;
-        cube.castShadow = false;
-        cube.position.x=x*5;
-        cube.position.y=y*5;
-        scene.add( cube );
-    }
-}
-cube = new THREE.Mesh( geometry_box, material_box );
-cube.position.z = 0.3;
-cube.scale.x=0.3;
-cube.receiveShadow = true;
-cube.castShadow = true;
-scene.add(cube);
-cube = new THREE.Mesh( geometry_box, material_box );
-cube.position.z = 0.3;
-cube.position.y= 0.45;
-cube.position.x=0.35;
-cube.scale.y=0.3;
-cube.receiveShadow = true;
-cube.castShadow = true;
-scene.add(cube);
-
-cube = new THREE.Mesh( geometry_box, material_box );
-cube.position.z = 0.3;
-cube.position.y= -1.45;
-cube.position.x=-1.35;
-cube.scale.y=0.3;
-cube.receiveShadow = true;
-cube.castShadow = true;
-scene.add(cube);
-
-scene.add( light );
-
-
-
-var spotLight = new THREE.PointLight( 0xffffff );
+var spotLight = new THREE.PointLight( 0xffffff, 3.0 );
 spotLight.castShadow = true;
-spotLight.position.set( 2, 2, 0.55 );
+spotLight.position.set( 2, 2, 0.6 );
 
 spotLight.castShadow = true;
 spotLight.distance = 8.0;
@@ -73,13 +34,12 @@ scene.add( spotLight );
 
 
 
-camera.position.z = 5;
-camera.position.y = -1.0;
-camera.lookAt(new THREE.Vector3(0,0.5,0));
+camera.position.z = 7;
+camera.position.y = 0;
+camera.lookAt(new THREE.Vector3(0,0,0));
 
 var worlds = [];
 
-var i=0
 function interpolate_world() {
     if (!time_has_started) {
         return;
@@ -91,31 +51,49 @@ function interpolate_world() {
         worlds.shift();
     }
 
-    ti = worlds[0].t;
-    tf = worlds[1].t;
-    dt = tf - ti;
-    dti = t - ti;
+    var ti = worlds[0].t;
+    var tf = worlds[1].t;
+    var dt = tf - ti;
+    var dti = t - ti;
 
-    xi = worlds[0].x;
-    xf = worlds[1].x;
-    dx = xf - xi;
-
-    yi = worlds[0].y;
-    yf = worlds[1].y;
-    dy = yf - yi;
-
-    x = xi + dx/dt * dti;
-    y = yi + dy/dt * dti;
-
-    i+=1;
-
-    xx = (x*0.05+2.0) % window.innerWidth;
-    yy = (y*0.05+2.0) % window.innerWidth
-    if (i % 100 == 0) {
-        console.log(xx,yy);
+    function interp(vi,vf) {
+        var dv = vf - vi;
+        return vi + dv/dt * dti;
     }
 
-    spotLight.position.set(xx, yy, 0.8);
+    for (var key in worlds[0].sprites) {
+        var sprite_i = worlds[0].sprites[key];
+        var sprite_f = worlds[1].sprites[key];
+        var scene_sprite;
+        if (all_scene_sprites.hasOwnProperty(key)) {
+            scene_sprite = all_scene_sprites[key];
+        }
+
+        switch (sprite_i.type) {
+            case "hero":
+                // no sprite yet for hero, just the spotLight
+                spotLight.position.x = interp(sprite_i.pos[0], sprite_f.pos[0]);
+                spotLight.position.y = interp(sprite_i.pos[1], sprite_f.pos[1]);
+                break;
+            case "floor1":
+                scene_sprite.position.x = interp(sprite_i.pos[0], sprite_f.pos[0]);
+                scene_sprite.position.y = interp(sprite_i.pos[1], sprite_f.pos[1]);
+                break;
+            case "box1":
+                scene_sprite.position.x = interp(sprite_i.pos[0], sprite_f.pos[0]);
+                scene_sprite.position.y = interp(sprite_i.pos[1], sprite_f.pos[1]);
+                scene_sprite.position.z = interp(sprite_i.pos[2], sprite_f.pos[2]);
+                scene_sprite.scale.z= interp(sprite_i.scale[2], sprite_f.scale[2]);
+                scene_sprite.scale.y= interp(sprite_i.scale[1], sprite_f.scale[1]);
+                scene_sprite.scale.x= interp(sprite_i.scale[0], sprite_f.scale[0]);
+                scene_sprite.rotation.z= interp(sprite_i.rotation[2], sprite_f.rotation[2]);
+                scene_sprite.rotation.y= interp(sprite_i.rotation[1], sprite_f.rotation[1]);
+                scene_sprite.rotation.x= interp(sprite_i.rotation[0], sprite_f.rotation[0]);
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 var time_has_started = false;
@@ -129,11 +107,103 @@ input_socket.onmessage = function (event) {
         console.log("input socket connected to server");
     }
 };
+
+function clone(obj) {
+    // just a shallow clone
+    var copy = {}
+    for (var attr in obj) {
+        copy[attr] = obj[attr]
+    }
+    return copy;
+}
+
+var all_scene_sprites = {};
+
+function add_new_sprite_to_scene(sprite) {
+    var scene_sprite;
+    // TODO: homogenize sprites in the FE
+    switch (sprite.type) {
+        case "hero":
+            // no sprite yet for hero, just the spotLight
+            scene_sprite = undefined;
+            break;
+        case "floor1":
+            scene_sprite = new THREE.Mesh( geometry_floor, material_floor );
+            scene_sprite.receiveShadow = true;
+            scene_sprite.castShadow = false;
+            scene_sprite.position.x=sprite.pos[0];
+            scene_sprite.position.y=sprite.pos[1];
+            break;
+        case "box1":
+            scene_sprite = new THREE.Mesh( geometry_box, material_box );
+            scene_sprite.position.z = sprite.pos[2];
+            scene_sprite.position.y= sprite.pos[1];
+            scene_sprite.position.x= sprite.pos[0];
+            scene_sprite.scale.z= sprite.scale[2];
+            scene_sprite.scale.y= sprite.scale[1];
+            scene_sprite.scale.x= sprite.scale[0];
+            scene_sprite.rotation.z= sprite.rotation[2];
+            scene_sprite.rotation.y= sprite.rotation[1];
+            scene_sprite.rotation.x= sprite.rotation[0];
+            scene_sprite.receiveShadow = true;
+            scene_sprite.castShadow = true;
+            break;
+        default:
+            break;
+    }
+    if (!scene_sprite) {
+        return;
+    }
+    scene.add(scene_sprite);
+    all_scene_sprites[""+sprite.key] = scene_sprite;
+}
+
+function remove_sprite_from_scene_by_key(key) {
+    var sprite = all_scene_sprites[""+key];
+    delete all_scene_sprites[""+key];
+    scene.remove(sprite)
+}
+
+function msg_push_as_world(msg) {
+    var world;
+    if (worlds.length>0) {
+        world = clone(worlds[worlds.length-1]);
+    } else {
+        world = {};
+        world.sprites = {};
+    }
+    world.t = msg.t;
+    for (var i=0; i<msg.new_sprites.length; i++) {
+        var sprite = msg.new_sprites[i];
+        world.sprites[""+sprite.key] = sprite;
+        add_new_sprite_to_scene(sprite);
+    }
+    for (var i=0; i<msg.updated_sprites.length; i++) {
+        var sprite = msg.updated_sprites[i];
+        world.sprites[""+sprite.key] = sprite;
+    }
+    for (var i=0; i<msg.removed_sprite_keys.length; i++) {
+        var key = msg.removed_sprite_keys[i];
+        delete world.sprites[""+key];
+        remove_sprite_from_scene_by_key(key);
+    }
+    if (!time_has_started) {
+        console.log(msg);
+        console.log(world);
+    }
+    worlds.push(world);
+}
+
+// var xx = 0
 world_socket.onmessage = function (event) {
     if (event.data==="Hello") {
         console.log("world socket connected to server");
     } else {
-        worlds.push(JSON.parse(event.data));
+        msg_push_as_world(JSON.parse(event.data));
+//        if (xx<3) {
+//            console.log(event.data);
+//            xx += 1;
+//        }
         if ((!time_has_started)&&(worlds.length==3)) {
             time_has_started = true;
             world_t0 = worlds[0].t;
@@ -145,7 +215,7 @@ world_socket.onmessage = function (event) {
 function send(txt) {
     setTimeout(function() {
         input_socket.send(txt);    
-    }, 50);
+    }, 40);
 }
 
 var up = false;
@@ -229,7 +299,6 @@ function animate() {
 
     // monitored code goes here
     interpolate_world();
-    cube.rotation.z += 0.01;
 	renderer.render( scene, camera );
 
 
