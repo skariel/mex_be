@@ -4,8 +4,9 @@ version = "0.1.0"
 authors = ["skariel"]
 
 [dependencies]
-clippy = "*"
+rand = "*"
 stash = "*"
 spade = "*"
+clippy = "*"
 websocket = {version = "*", features = ["nightly"]}
 parking_lot = {version = "*", features = ["nightly"]}

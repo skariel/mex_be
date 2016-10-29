@@ -1,5 +1,5 @@
-use std::thread;
 use std::time;
+use std::thread;
 use std::borrow::Cow;
 use std::string::String;
 use std::sync::{Arc, mpsc};
@@ -12,6 +12,7 @@ use websocket::header::WebSocketProtocol;
 use websocket::{Server, Message, Sender, Receiver};
 
 use input::Input;
+use sessionid::SessionID;
 use world::{World, MsgType};
 
 #[derive(Debug, Clone, Copy)]
@@ -24,7 +25,7 @@ fn to_cow_str<'s>(msg: &'s Message<'s>) -> Cow<'s, str> {
     String::from_utf8_lossy(&*msg.payload)
 }
 
-pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
+pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<(SessionID, Input)>,
                                        curr_world_is_1: Arc<AtomicBool>,
                                        world1: Arc<RwLock<World>>,
                                        world2: Arc<RwLock<World>>) {
@@ -38,12 +39,12 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
         let world2 = world2.clone();
         // Spawn a new thread for each connection.
         thread::spawn(move || {
-            let request = connection.unwrap().read_request().unwrap(); // Get the request
-            let headers = request.headers.clone(); // Keep the headers so we can check them
+            let request = connection.unwrap().read_request().unwrap();
+            let headers = request.headers.clone();
 
-            request.validate().unwrap(); // Validate the request
+            request.validate().unwrap();
 
-            let mut response = request.accept(); // Form a response
+            let mut response = request.accept();
 
             let protocol;
 
@@ -58,7 +59,7 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
                     return;
                 }
 
-                let mut client = response.send().unwrap(); // Send the response
+                let mut client = response.send().unwrap();
 
                 let ip = client.get_mut_sender()
                     .get_mut()
@@ -79,18 +80,15 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
                     time.elapsed().unwrap().as_secs() as f64 * 1000.0 +
                     time.elapsed().unwrap().subsec_nanos() as f64 / 1000000.0
                 };
-                let mut message_count = 0;
+
+                // message to create a hero
+                let session_id = SessionID::new();
+                input_tx.send((session_id, Input::CreateHero));
 
                 match protocol {
                     Protocol::Input => {
                         for message in receiver.incoming_messages() {
                             let message: Message = message.unwrap();
-
-                            message_count += 1;
-                            if message_count % 100 == 0 {
-                                println!("rate: {:?}",
-                                         message_count as f64 / elapsed_ms() * 1000.0);
-                            }
 
                             match message.opcode {
                                 Type::Close => {
@@ -105,9 +103,8 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<Input>,
                                 }
                                 _ => {
                                     // get the message text
-                                    // println!("{}", &*to_cow_str(&message));
                                     if let Some(input) = Input::from_str(&*to_cow_str(&message)) {
-                                        input_tx.send(input).unwrap();
+                                        input_tx.send((session_id, input)).unwrap();
                                         continue;
                                     }
                                 }

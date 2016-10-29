@@ -1,7 +1,10 @@
 use std::sync::{Arc, mpsc};
+use std::collections::BTreeMap;
 use std::sync::atomic::{Ordering, AtomicBool};
 
 use parking_lot::RwLock;
+
+use sessionid::SessionID;
 
 #[derive(Debug)]
 pub enum Input {
@@ -13,6 +16,7 @@ pub enum Input {
     DownReleased,
     LeftReleased,
     RightReleased,
+    CreateHero,
 }
 
 impl Input {
@@ -31,17 +35,17 @@ impl Input {
     }
 }
 
-pub fn merge_inputs(input_rx: mpsc::Receiver<Input>,
+pub fn merge_inputs(input_rx: mpsc::Receiver<(SessionID, Input)>,
                     curr_world_is_1: Arc<AtomicBool>,
-                    inputs1: Arc<RwLock<Vec<Input>>>,
-                    inputs2: Arc<RwLock<Vec<Input>>>) {
+                    inputs1: Arc<RwLock<BTreeMap<SessionID, Input>>>,
+                    inputs2: Arc<RwLock<BTreeMap<SessionID, Input>>>) {
     println!("merging inputs!");
-    for input in input_rx {
+    for (session_id, input) in input_rx {
         let mut inputs = if curr_world_is_1.load(Ordering::Relaxed) {
             inputs1.write()
         } else {
             inputs2.write()
         };
-        inputs.push(input);
+        inputs.insert(session_id, input);
     }
 }

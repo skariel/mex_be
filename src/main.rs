@@ -1,6 +1,7 @@
 #![feature(plugin)]
 #![plugin(clippy)]
 
+extern crate rand;
 extern crate stash;
 extern crate websocket;
 extern crate parking_lot;
@@ -9,6 +10,7 @@ use std::time;
 use std::thread;
 use std::vec::Vec;
 use std::sync::{mpsc, Arc};
+use std::collections::BTreeMap;
 use std::sync::atomic::{Ordering, AtomicBool};
 
 use parking_lot::RwLock;
@@ -16,9 +18,11 @@ use parking_lot::RwLock;
 mod world;
 mod input;
 mod sprite;
+mod sessionid;
 mod connections;
 
 use world::World;
+use sessionid::SessionID;
 use input::{Input, merge_inputs};
 use connections::listen_to_incomming_connections;
 
@@ -30,8 +34,8 @@ fn model_loop(config: Arc<Config>,
               curr_world_is_1: Arc<AtomicBool>,
               world1: Arc<RwLock<World>>,
               world2: Arc<RwLock<World>>,
-              inputs1: Arc<RwLock<Vec<Input>>>,
-              inputs2: Arc<RwLock<Vec<Input>>>) {
+              inputs1: Arc<RwLock<BTreeMap<SessionID,Input>>>,
+              inputs2: Arc<RwLock<BTreeMap<SessionID,Input>>>) {
     println!("looping the model");
 
     let time = time::SystemTime::now();
@@ -78,9 +82,9 @@ fn main() {
 
     // initialization of variables
 
-    let inputs1 = Arc::new(RwLock::new(Vec::new()));
-    let inputs2 = Arc::new(RwLock::new(Vec::new()));
-    let (input_tx, input_rx) = mpsc::channel::<Input>();
+    let inputs1 = Arc::new(RwLock::new(BTreeMap::new()));
+    let inputs2 = Arc::new(RwLock::new(BTreeMap::new()));
+    let (input_tx, input_rx) = mpsc::channel::<(SessionID, Input)>();
     let curr_world_is_1 = Arc::new(AtomicBool::new(true));
     let config = Arc::new(Config { delay_between_snapshots_ms: 30 });
     let world1 = Arc::new(RwLock::new(World::new()));
