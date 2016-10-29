@@ -6,25 +6,18 @@ use std::sync::atomic::{Ordering, AtomicBool};
 
 use parking_lot::RwLock;
 
-use websocket::message::Type;
 use websocket::header::WebSocketProtocol;
 use websocket::{Server, Message, Sender, Receiver};
 
-use input::Input;
 use sessionid::SessionID;
 use world::{World, MsgType};
-
-#[derive(Debug, Clone, Copy)]
-enum Protocol {
-    Input,
-    World,
-}
+use input::{Input, SessionInput};
 
 fn to_cow_str<'s>(msg: &'s Message<'s>) -> Cow<'s, str> {
     String::from_utf8_lossy(&*msg.payload)
 }
 
-pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<(SessionID, Input)>,
+pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<SessionInput>,
                                        curr_world_is_1: Arc<AtomicBool>,
                                        world1: Arc<RwLock<World>>,
                                        world2: Arc<RwLock<World>>) {
@@ -45,96 +38,69 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<(SessionID, Input)
 
             let mut response = request.accept();
 
-            let protocol;
-
             if let Some(&WebSocketProtocol(ref protocols)) = headers.get() {
-                if protocols.contains(&("input-websocket".to_string())) {
-                    protocol = Protocol::Input;
-                    response.headers.set(WebSocketProtocol(vec!["input-websocket".to_string()]));
-                } else if protocols.contains(&("world-websocket".to_string())) {
-                    protocol = Protocol::World;
-                    response.headers.set(WebSocketProtocol(vec!["world-websocket".to_string()]));
+                if protocols.contains(&("mex-websocket".to_string())) {
+                    response.headers.set(WebSocketProtocol(vec!["mex-websocket".to_string()]));
                 } else {
                     return;
                 }
+            } else {
+                return
+            }
+
+            let session_id = SessionID::new();
+
+            let mut client =response.send().unwrap();
+
+            let ip = client.get_mut_sender()
+                .get_mut()
+                .peer_addr()
+                .unwrap();
 
 
-                let session_id;
-                if let Some(session_raw) = headers.get_raw("SESSION_ID") {
-                    session_id = SessionID::from_string(&String::from_utf8(session_raw[0].clone()).unwrap());
+            println!("Connection from {}", ip);
+
+            let message: Message = Message::text("Hello".to_string());
+            client.send_message(&message).unwrap();
+
+            let (mut sender, mut receiver) = client.split();
+
+            // message to create a hero
+            input_tx.send(SessionInput{session_id: session_id, input:Input::CreateHero}).unwrap();
+
+            thread::spawn(move || {
+                for message in receiver.incoming_messages() {
+                    let message: Message = message.unwrap();
+
+                    // get the message text
+                    if let Some(input) = Input::from_str(&*to_cow_str(&message)) {
+                        input_tx.send(SessionInput{session_id: session_id, input: input}).unwrap();
+                        continue;
+                    }
+                }
+            });
+            // sending first full message. Later we can just diff
+            let mut msg_type = MsgType::Full;
+            loop {
+                let world = if curr_world_is_1.load(Ordering::Acquire) {
+                    world2.clone()
                 } else {
-                    println!("No session header, dropping connection");
-                    return;
+                    world1.clone()
                 };
 
-
-                let mut client = response.send().unwrap();
-
-                let ip = client.get_mut_sender()
-                    .get_mut()
-                    .peer_addr()
-                    .unwrap();
-
-
-                println!("Connection from {}", ip);
-
-                let message: Message = Message::text("Hello".to_string());
-                client.send_message(&message).unwrap();
-
-                let (mut sender, mut receiver) = client.split();
-
-                // message to create a hero
-                input_tx.send((session_id, Input::CreateHero)).unwrap();
-
-                match protocol {
-                    Protocol::Input => {
-                        for message in receiver.incoming_messages() {
-                            let message: Message = message.unwrap();
-
-                            match message.opcode {
-                                Type::Close => {
-                                    let message = Message::close();
-                                    sender.send_message(&message).unwrap();
-                                    println!("Client {} disconnected", ip);
-                                    return;
-                                }
-                                Type::Ping => {
-                                    let message = Message::pong(message.payload);
-                                    sender.send_message(&message).unwrap();
-                                }
-                                _ => {
-                                    // get the message text
-                                    if let Some(input) = Input::from_str(&*to_cow_str(&message)) {
-                                        input_tx.send((session_id, input)).unwrap();
-                                        continue;
-                                    }
-                                }
-                            }
-                        }
+                let msg;
+                {
+                    let read_world = world.read();
+                    if !read_world.hero_keys.contains_key(&session_id) {
+                        continue
                     }
-                    Protocol::World => {
-                        // sending first full message. Later we can just diff
-                        let mut msg_type = MsgType::Full;
-                        loop {
-                            let world = if curr_world_is_1.load(Ordering::Relaxed) {
-                                world2.clone()
-                            } else {
-                                world1.clone()
-                            };
-
-                            let msg;
-                            {
-                                let read_world = world.read();
-                                msg = String::from(&(*read_world.as_frontend_msg(msg_type, session_id)));
-                            }
-                            match sender.send_message(&Message::text(msg.as_str())) {
-                                Ok(_) => (),
-                                Err(_) => return,
-                            };
-                            msg_type = MsgType::Diff;
-                        }
-                    }
+                    msg = String::from(&(*read_world.as_frontend_msg(msg_type, session_id)));
                 }
+                match sender.send_message(&Message::text(msg.as_str())) {
+                    Ok(_) => (),
+                    Err(_) => return,
+                };
+                msg_type = MsgType::Diff;
             }
         });
     }

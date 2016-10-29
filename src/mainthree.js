@@ -76,9 +76,8 @@ function interpolate_world() {
                 // checking for this sessisons hero:
                 if (sprite_i.key!==hero_key) {
                     // currently we don't display other heros
-                    return;
+                    continue;
                 }
-
                 // no sprite yet for hero, just the spotLight
                 spotLight.position.x = interp(sprite_i.pos[0], sprite_f.pos[0]);
                 spotLight.position.y = interp(sprite_i.pos[1], sprite_f.pos[1]);
@@ -108,13 +107,7 @@ var time_has_started = false;
 var t0 = 0.0;
 var world_t0 = 0.0;
 
-var input_socket = new WebSocket("ws://127.0.0.1:2794", "input-websocket");
-var world_socket = new WebSocket("ws://127.0.0.1:2794", "world-websocket");
-input_socket.onmessage = function (event) {
-    if (event.data==="Hello") {
-        console.log("input socket connected to server");
-    }
-};
+var mex_socket = new WebSocket("ws://127.0.0.1:2794", "mex-websocket");
 
 function clone(obj) {
     // just a shallow clone
@@ -201,16 +194,12 @@ function msg_push_as_world(msg) {
         delete world.sprites[""+key];
         remove_sprite_from_scene_by_key(key);
     }
-    if (!time_has_started) {
-        console.log(msg);
-        console.log(world);
-    }
     worlds.push(world);
 }
 
-world_socket.onmessage = function (event) {
+mex_socket.onmessage = function (event) {
     if (event.data==="Hello") {
-        console.log("world socket connected to server");
+        console.log("mex socket connected");
     } else {
         msg_push_as_world(JSON.parse(event.data));
         if ((!time_has_started)&&(worlds.length==3)) {
@@ -223,7 +212,7 @@ world_socket.onmessage = function (event) {
 
 function send(txt) {
     setTimeout(function() {
-        input_socket.send(txt);    
+        mex_socket.send(txt);
     }, 40);
 }
 

@@ -2,8 +2,8 @@ use std::collections::BTreeMap;
 
 use stash::Stash;
 
-use input::Input;
 use sessionid::SessionID;
+use input::{Input, SessionInput};
 use sprite::{Hero, Floor1, Box1, SpriteEnum};
 
 pub struct World {
@@ -102,7 +102,7 @@ impl World {
     }
     pub fn hero_mut(&mut self, session_id: &SessionID) -> &mut Hero {
         if let Some(&hero_key) = self.hero_keys.get(session_id) {
-            return match *self.sprites.get_mut(hero_key).unwrap() {
+            return match *self.sprites.get_mut(hero_key).expect(format!("could not find sprite(hero) by key {}", hero_key).as_str()) {
                 SpriteEnum::Hero(ref mut hero) => hero,
                 _ => panic!("key {:?} does not belong to a Hero type", hero_key),
             }
@@ -110,24 +110,23 @@ impl World {
         panic!("could not find hero key for session {:?}", session_id);
 
     }
-    pub fn advance(&self, next_world: &mut World, dt_ms: f32, inputs: &mut BTreeMap<SessionID, Input>) {
+    pub fn advance(&self, next_world: &mut World, dt_ms: f32, inputs: &[SessionInput]) {
 
         self.copy_into(next_world);
         next_world.new_sprite_keys.clear();
         next_world.removed_sprite_keys.clear();
         next_world.updated_sprite_keys.clear();
 
-
-        for (session_id, input) in inputs {
-            match *input {
-                Input::UpPressed => next_world.hero_mut(session_id).up_pressed = true,
-                Input::DownPressed => next_world.hero_mut(session_id).down_pressed = true,
-                Input::LeftPressed => next_world.hero_mut(session_id).left_pressed = true,
-                Input::RightPressed => next_world.hero_mut(session_id).right_pressed = true,
-                Input::UpReleased => next_world.hero_mut(session_id).up_pressed = false,
-                Input::DownReleased => next_world.hero_mut(session_id).down_pressed = false,
-                Input::LeftReleased => next_world.hero_mut(session_id).left_pressed = false,
-                Input::RightReleased => next_world.hero_mut(session_id).right_pressed = false,
+        for input in inputs {
+            match input.input {
+                Input::UpPressed => next_world.hero_mut(&input.session_id).up_pressed = true,
+                Input::DownPressed => next_world.hero_mut(&input.session_id).down_pressed = true,
+                Input::LeftPressed => next_world.hero_mut(&input.session_id).left_pressed = true,
+                Input::RightPressed => next_world.hero_mut(&input.session_id).right_pressed = true,
+                Input::UpReleased => next_world.hero_mut(&input.session_id).up_pressed = false,
+                Input::DownReleased => next_world.hero_mut(&input.session_id).down_pressed = false,
+                Input::LeftReleased => next_world.hero_mut(&input.session_id).left_pressed = false,
+                Input::RightReleased => next_world.hero_mut(&input.session_id).right_pressed = false,
                 Input::CreateHero => {
                     let hero_key = next_world.sprites.put(SpriteEnum::Hero(Hero {
                         pos: (2.0, 2.0),
@@ -136,7 +135,7 @@ impl World {
                         left_pressed: false,
                         right_pressed: false,
                     }));
-                    next_world.hero_keys.insert(*session_id, hero_key);
+                    next_world.hero_keys.insert(input.session_id, hero_key);
                 }
             }
         }
@@ -188,7 +187,7 @@ impl World {
             .collect::<Vec<String>>()
             .join(",");
 
-        format!("{{\"t\":{}, \"session_id\":\"{}\", \"hero_key\":\"{}\", \"new_sprites\":[{}], \"updated_sprites\":[{}],\"removed_sprite_keys\":[{}] }}",
+        format!("{{\"t\":{}, \"session_id\":\"{}\", \"hero_key\":{}, \"new_sprites\":[{}], \"updated_sprites\":[{}],\"removed_sprite_keys\":[{}] }}",
              self.elapsed_ms,
              session_id.to_string(),
              if let Some(key) = self.hero_keys.get(&session_id) {

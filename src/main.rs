@@ -9,7 +9,6 @@ extern crate parking_lot;
 use std::time;
 use std::thread;
 use std::sync::{mpsc, Arc};
-use std::collections::BTreeMap;
 use std::sync::atomic::{Ordering, AtomicBool};
 
 use parking_lot::RwLock;
@@ -21,8 +20,7 @@ mod sessionid;
 mod connections;
 
 use world::World;
-use sessionid::SessionID;
-use input::{Input, merge_inputs};
+use input::{SessionInput, merge_inputs};
 use connections::listen_to_incomming_connections;
 
 struct Config {
@@ -33,8 +31,8 @@ fn model_loop(config: Arc<Config>,
               curr_world_is_1: Arc<AtomicBool>,
               world1: Arc<RwLock<World>>,
               world2: Arc<RwLock<World>>,
-              inputs1: Arc<RwLock<BTreeMap<SessionID,Input>>>,
-              inputs2: Arc<RwLock<BTreeMap<SessionID,Input>>>) {
+              inputs1: Arc<RwLock<Vec<SessionInput>>>,
+              inputs2: Arc<RwLock<Vec<SessionInput>>>) {
     println!("looping the model");
 
     let time = time::SystemTime::now();
@@ -44,18 +42,18 @@ fn model_loop(config: Arc<Config>,
     };
     let mut frames = 0;
 
-    curr_world_is_1.store(false, Ordering::Relaxed);
+    curr_world_is_1.store(false, Ordering::Release);
     loop {
-        curr_world_is_1.store(!curr_world_is_1.load(Ordering::Relaxed), Ordering::Relaxed);
+        curr_world_is_1.store(!curr_world_is_1.load(Ordering::Acquire), Ordering::Release);
         frames += 1;
-        if frames % 100 == 0 {
+        if frames % 1000 == 0 {
             println!("frames: {:?}", frames);
         }
         let t1 = elapsed_ms();
         let curr_world;
         let mut next_world;
         let mut next_inputs =
-            if curr_world_is_1.load(Ordering::Relaxed) {
+            if curr_world_is_1.load(Ordering::Acquire) {
                 next_world = world2.write();
                 curr_world = world1.read();
                 inputs2.write()
@@ -66,7 +64,7 @@ fn model_loop(config: Arc<Config>,
             };
 
         let dt: f32 = elapsed_ms() as f32 - curr_world.elapsed_ms;
-        curr_world.advance(&mut *next_world, dt, &mut *next_inputs);
+        curr_world.advance(&mut *next_world, dt, &*next_inputs);
 
         next_inputs.clear();
 
@@ -80,9 +78,9 @@ fn main() {
 
     // initialization of variables
 
-    let inputs1 = Arc::new(RwLock::new(BTreeMap::new()));
-    let inputs2 = Arc::new(RwLock::new(BTreeMap::new()));
-    let (input_tx, input_rx) = mpsc::channel::<(SessionID, Input)>();
+    let inputs1 = Arc::new(RwLock::new(Vec::new()));
+    let inputs2 = Arc::new(RwLock::new(Vec::new()));
+    let (input_tx, input_rx) = mpsc::channel::<SessionInput>();
     let curr_world_is_1 = Arc::new(AtomicBool::new(true));
     let config = Arc::new(Config { delay_between_snapshots_ms: 30 });
     let world1 = Arc::new(RwLock::new(World::new()));
@@ -95,14 +93,14 @@ fn main() {
     let w1 = world1.clone();
     let w2 = world2.clone();
     let cw = curr_world_is_1.clone();
-    let t2 = thread::spawn(|| {
+    let t2 = thread::spawn(move || {
         model_loop(config, cw, w1, w2, ic1, ic2);
     });
 
     let w1 = world1.clone();
     let w2 = world2.clone();
     let cw = curr_world_is_1.clone();
-    let t1 = thread::spawn(|| {
+    let t1 = thread::spawn(move || {
         listen_to_incomming_connections(input_tx, cw, w1, w2);
     });
 

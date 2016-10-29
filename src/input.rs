@@ -1,12 +1,11 @@
 use std::sync::{Arc, mpsc};
-use std::collections::BTreeMap;
 use std::sync::atomic::{Ordering, AtomicBool};
 
 use parking_lot::RwLock;
 
 use sessionid::SessionID;
 
-#[derive(Debug)]
+#[derive(Clone, Copy, Eq, PartialEq, Debug)]
 pub enum Input {
     UpPressed,
     DownPressed,
@@ -17,6 +16,12 @@ pub enum Input {
     LeftReleased,
     RightReleased,
     CreateHero,
+}
+
+#[derive(Clone, Copy, Eq, PartialEq, Debug)]
+pub struct SessionInput {
+    pub session_id: SessionID,
+    pub input: Input,
 }
 
 impl Input {
@@ -35,17 +40,17 @@ impl Input {
     }
 }
 
-pub fn merge_inputs(input_rx: mpsc::Receiver<(SessionID, Input)>,
+pub fn merge_inputs(input_rx: mpsc::Receiver<SessionInput>,
                     curr_world_is_1: Arc<AtomicBool>,
-                    inputs1: Arc<RwLock<BTreeMap<SessionID, Input>>>,
-                    inputs2: Arc<RwLock<BTreeMap<SessionID, Input>>>) {
+                    inputs1: Arc<RwLock<Vec<SessionInput>>>,
+                    inputs2: Arc<RwLock<Vec<SessionInput>>>) {
     println!("merging inputs!");
-    for (session_id, input) in input_rx {
-        let mut inputs = if curr_world_is_1.load(Ordering::Relaxed) {
+    for session_input in input_rx {
+        let mut inputs = if curr_world_is_1.load(Ordering::Acquire) {
             inputs1.write()
         } else {
             inputs2.write()
         };
-        inputs.insert(session_id, input);
+        inputs.push(session_input);
     }
 }
