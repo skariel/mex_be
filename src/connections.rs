@@ -1,4 +1,3 @@
-use std::time;
 use std::thread;
 use std::borrow::Cow;
 use std::string::String;
@@ -59,6 +58,16 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<(SessionID, Input)
                     return;
                 }
 
+
+                let session_id;
+                if let Some(session_raw) = headers.get_raw("SESSION_ID") {
+                    session_id = SessionID::from_string(&String::from_utf8(session_raw[0].clone()).unwrap());
+                } else {
+                    println!("No session header, dropping connection");
+                    return;
+                };
+
+
                 let mut client = response.send().unwrap();
 
                 let ip = client.get_mut_sender()
@@ -74,16 +83,8 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<(SessionID, Input)
 
                 let (mut sender, mut receiver) = client.split();
 
-
-                let time = time::SystemTime::now();
-                let elapsed_ms = || -> f64 {
-                    time.elapsed().unwrap().as_secs() as f64 * 1000.0 +
-                    time.elapsed().unwrap().subsec_nanos() as f64 / 1000000.0
-                };
-
                 // message to create a hero
-                let session_id = SessionID::new();
-                input_tx.send((session_id, Input::CreateHero));
+                input_tx.send((session_id, Input::CreateHero)).unwrap();
 
                 match protocol {
                     Protocol::Input => {
@@ -124,7 +125,7 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<(SessionID, Input)
                             let msg;
                             {
                                 let read_world = world.read();
-                                msg = String::from(&(*read_world.as_frontend_msg(msg_type)));
+                                msg = String::from(&(*read_world.as_frontend_msg(msg_type, session_id)));
                             }
                             match sender.send_message(&Message::text(msg.as_str())) {
                                 Ok(_) => (),

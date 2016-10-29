@@ -95,14 +95,10 @@ impl World {
         }
     }
     pub fn copy_into(&self, into: &mut World) {
+        // no need to copy the diff vectors (e.g. new_sprite_keys) since these get deleted anyway
         into.elapsed_ms = self.elapsed_ms;
-        for (k, v) in &self.sprites {
-            if let Some(into_v) = into.sprites.get_mut(k) {
-                *into_v = *v;
-            } else {
-                into.sprites.(*k, *v);
-            }
-        }
+        into.sprites.clone_from(&self.sprites);
+        into.hero_keys.clone_from(&self.hero_keys);
     }
     pub fn hero_mut(&mut self, session_id: &SessionID) -> &mut Hero {
         if let Some(&hero_key) = self.hero_keys.get(session_id) {
@@ -120,6 +116,7 @@ impl World {
         next_world.new_sprite_keys.clear();
         next_world.removed_sprite_keys.clear();
         next_world.updated_sprite_keys.clear();
+
 
         for (session_id, input) in inputs {
             match *input {
@@ -145,18 +142,15 @@ impl World {
         }
 
         for (key, sprite) in next_world.sprites.iter_mut() {
-            match sprite {
-                &mut SpriteEnum::Hero(ref mut hero) => {
-                    hero.drift(dt_ms);
-                    next_world.updated_sprite_keys.push(key);
-                },
-                _ => (),
+            if let SpriteEnum::Hero(ref mut hero) = *sprite {
+                hero.drift(dt_ms);
+                next_world.updated_sprite_keys.push(key);
             }
         }
 
         next_world.elapsed_ms += dt_ms
     }
-    pub fn as_frontend_msg(&self, msg_type: MsgType) -> String {
+    pub fn as_frontend_msg(&self, msg_type: MsgType, session_id: SessionID) -> String {
         let get_sprite_msg_by_value = |key, value: &SpriteEnum| {
             match *value {
                 SpriteEnum::Hero(hero) => hero.as_frontend_msg(key),
@@ -194,8 +188,12 @@ impl World {
             .collect::<Vec<String>>()
             .join(",");
 
-        format!("{{\"t\":{}, \"new_sprites\":[{}], \"updated_sprites\":[{}],\"removed_sprite_keys\":[{}] }}",
+        format!("{{\"t\":{}, \"session_id\":\"{}\", \"hero_key\":\"{}\", \"new_sprites\":[{}], \"updated_sprites\":[{}],\"removed_sprite_keys\":[{}] }}",
              self.elapsed_ms,
+             session_id.to_string(),
+             if let Some(key) = self.hero_keys.get(&session_id) {
+                 key.to_string()
+             } else {"".into()},
              new_sprite_msgs,
              updated_sprite_msgs,
              removed_sprite_keys,

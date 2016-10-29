@@ -39,6 +39,8 @@ camera.position.y = 0;
 camera.lookAt(new THREE.Vector3(0,0,0));
 
 var worlds = [];
+var session_id;
+var hero_key;
 
 function interpolate_world() {
     if (!time_has_started) {
@@ -71,6 +73,12 @@ function interpolate_world() {
 
         switch (sprite_i.type) {
             case "hero":
+                // checking for this sessisons hero:
+                if (sprite_i.key!==hero_key) {
+                    // currently we don't display other heros
+                    return;
+                }
+
                 // no sprite yet for hero, just the spotLight
                 spotLight.position.x = interp(sprite_i.pos[0], sprite_f.pos[0]);
                 spotLight.position.y = interp(sprite_i.pos[1], sprite_f.pos[1]);
@@ -165,6 +173,12 @@ function remove_sprite_from_scene_by_key(key) {
 }
 
 function msg_push_as_world(msg) {
+    if (msg.hasOwnProperty("session_id")) {
+        session_id = msg.session_id;
+    }
+    if (msg.hasOwnProperty("hero_key")) {
+        hero_key = msg.hero_key;
+    }
     var world;
     if (worlds.length>0) {
         world = clone(worlds[worlds.length-1]);

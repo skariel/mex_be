@@ -8,7 +8,6 @@ extern crate parking_lot;
 
 use std::time;
 use std::thread;
-use std::vec::Vec;
 use std::sync::{mpsc, Arc};
 use std::collections::BTreeMap;
 use std::sync::atomic::{Ordering, AtomicBool};
@@ -55,17 +54,16 @@ fn model_loop(config: Arc<Config>,
         let t1 = elapsed_ms();
         let curr_world;
         let mut next_world;
-        let mut next_inputs;
-
-        if curr_world_is_1.load(Ordering::Relaxed) {
-            next_world = world2.write();
-            curr_world = world1.read();
-            next_inputs = inputs2.write();
-        } else {
-            next_world = world1.write();
-            curr_world = world2.read();
-            next_inputs = inputs1.write();
-        }
+        let mut next_inputs =
+            if curr_world_is_1.load(Ordering::Relaxed) {
+                next_world = world2.write();
+                curr_world = world1.read();
+                inputs2.write()
+            } else {
+                next_world = world1.write();
+                curr_world = world2.read();
+                inputs1.write()
+            };
 
         let dt: f32 = elapsed_ms() as f32 - curr_world.elapsed_ms;
         curr_world.advance(&mut *next_world, dt, &mut *next_inputs);
