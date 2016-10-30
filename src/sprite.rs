@@ -18,6 +18,7 @@ pub struct Box1 {
     pub pos: (f32, f32, f32),
     pub scale: (f32, f32, f32),
     pub rotation: (f32, f32, f32),
+    pub rotates: bool,
 }
 impl Box1 {
     pub fn as_frontend_msg(&self, key: usize) -> String {
@@ -33,6 +34,11 @@ impl Box1 {
                 self.rotation.0,
                 self.rotation.1,
                 self.rotation.2)
+    }
+    pub fn drift(&mut self, dt_ms: f32) {
+        if self.rotates {
+            self.rotation.2 += 0.001f32 * dt_ms;
+        }
     }
 }
 

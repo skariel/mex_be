@@ -1,3 +1,5 @@
+// TODO: use dat.gui
+
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
@@ -22,8 +24,8 @@ spotLight.position.set( 2, 2, 0.6 );
 spotLight.castShadow = true;
 spotLight.distance = 8.0;
 
-spotLight.shadow.mapSize.width = 512;
-spotLight.shadow.mapSize.height = 512;
+spotLight.shadow.mapSize.width = 256;
+spotLight.shadow.mapSize.height = 256;
 
 spotLight.shadow.camera.near = 0.2;
 spotLight.shadow.camera.far = 8.0;

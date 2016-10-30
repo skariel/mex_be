@@ -29,52 +29,62 @@ impl World {
             pos: (-3.0, -3.0, 0.2),
             scale: (1.0, 0.7, 1.0),
             rotation: (0.0, 0.0, 0.1),
+            rotates: false,
         })));
         new_sprite_keys.push(stash.put(SpriteEnum::Box1(Box1 {
             pos: (-3.0, -2.0, 0.2),
             scale: (1.0, 0.7, 1.0),
             rotation: (0.0, 0.0, 0.1),
+            rotates: false,
         })));
         new_sprite_keys.push(stash.put(SpriteEnum::Box1(Box1 {
             pos: (-3.0, -1.0, 0.2),
             scale: (1.0, 0.7, 1.0),
             rotation: (0.0, 0.0, 0.1),
+            rotates: false,
         })));
         new_sprite_keys.push(stash.put(SpriteEnum::Box1(Box1 {
             pos: (-3.0, -0.0, 0.2),
             scale: (1.0, 0.7, 1.0),
             rotation: (0.0, 0.0, 0.1),
+            rotates: true,
         })));
         new_sprite_keys.push(stash.put(SpriteEnum::Box1(Box1 {
             pos: (-3.0, 1.0, 0.2),
             scale: (1.0, 0.7, 1.0),
             rotation: (0.0, 0.0, 0.1),
+            rotates: false,
         })));
 
         new_sprite_keys.push(stash.put(SpriteEnum::Box1(Box1 {
             pos: (1.0, -3.0, 0.2),
             scale: (1.0, 0.7, 1.0),
             rotation: (0.0, 0.0, 0.1),
+            rotates: false,
         })));
         new_sprite_keys.push(stash.put(SpriteEnum::Box1(Box1 {
             pos: (1.0, -2.0, 0.2),
             scale: (1.0, 0.7, 1.0),
             rotation: (0.0, 0.0, 0.1),
+            rotates: false,
         })));
         new_sprite_keys.push(stash.put(SpriteEnum::Box1(Box1 {
             pos: (1.0, -1.0, 0.2),
             scale: (1.0, 0.7, 1.0),
             rotation: (0.0, 0.0, 0.1),
+            rotates: false,
         })));
         new_sprite_keys.push(stash.put(SpriteEnum::Box1(Box1 {
             pos: (1.0, -0.0, 0.2),
             scale: (1.0, 0.7, 1.0),
             rotation: (0.0, 0.0, 0.1),
+            rotates: false,
         })));
         new_sprite_keys.push(stash.put(SpriteEnum::Box1(Box1 {
             pos: (3.0, 1.0, 0.2),
             scale: (1.0, 0.7, 1.0),
             rotation: (0.0, 0.0, 0.1),
+            rotates: false,
         })));
         for x in -3..3 {
             for y in -3..3 {
@@ -143,6 +153,9 @@ impl World {
         for (key, sprite) in next_world.sprites.iter_mut() {
             if let SpriteEnum::Hero(ref mut hero) = *sprite {
                 hero.drift(dt_ms);
+                next_world.updated_sprite_keys.push(key);
+            } else if let SpriteEnum::Box1(ref mut box1) = *sprite {
+                box1.drift(dt_ms);
                 next_world.updated_sprite_keys.push(key);
             }
         }
