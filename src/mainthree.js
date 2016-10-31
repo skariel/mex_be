@@ -1,9 +1,11 @@
 // TODO: use dat.gui
+// TODO: use seriously.js
 
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
 var renderer = new THREE.WebGLRenderer({antialias: false, precision: "lowp"});
+renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( window.innerWidth/1.3, window.innerHeight/1.3 , false);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.BasicShadowMap;
@@ -31,7 +33,6 @@ spotLight.shadow.camera.near = 0.2;
 spotLight.shadow.camera.far = 8.0;
 
 scene.add( spotLight );
-
 
 
 
@@ -299,7 +300,8 @@ function animate() {
 
     // monitored code goes here
     interpolate_world();
-	renderer.render( scene, camera );
+	//renderer.render( scene, camera );
+	composer.render();
 
 
 
@@ -314,4 +316,21 @@ requestAnimationFrame( animate );
 
 
 
+// postprocessing
+				composer = new THREE.EffectComposer( renderer );
+				composer.addPass( new THREE.RenderPass( scene, camera ) );
 
+
+//				var effect = new THREE.ShaderPass( THREE.RGBShiftShader );
+//				effect.uniforms[ 'amount' ].value = 0.002;
+//				effect.renderToScreen = true;
+//				composer.addPass( effect );
+
+				var effect = new THREE.ShaderPass( THREE.DigitalGlitch );
+				effect.uniforms[ 'amount' ].value = 0.001;
+				effect.uniforms[ 'seed' ].value = Math.random();
+				effect.uniforms[ 'seed_x' ].value = Math.random();
+				effect.uniforms[ 'seed_y' ].value = Math.random();
+				effect.uniforms[ 'col_s' ].value = 0.0;
+				effect.renderToScreen = true;
+				composer.addPass( effect );

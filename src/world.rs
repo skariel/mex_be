@@ -86,8 +86,8 @@ impl World {
             rotation: (0.0, 0.0, 0.1),
             rotates: false,
         })));
-        for x in -3..3 {
-            for y in -3..3 {
+        for x in -7..7 {
+            for y in -7..7 {
                 let floor1_key = stash.put(SpriteEnum::Floor1(Floor1 {
                     pos: (x as f32 * 5.0f32, y as f32 * 5.0f32),
                 }));
@@ -150,14 +150,19 @@ impl World {
             }
         }
 
-        for (key, sprite) in next_world.sprites.iter_mut() {
-            if let SpriteEnum::Hero(ref mut hero) = *sprite {
-                hero.drift(dt_ms);
-                next_world.updated_sprite_keys.push(key);
-            } else if let SpriteEnum::Box1(ref mut box1) = *sprite {
-                box1.drift(dt_ms);
-                next_world.updated_sprite_keys.push(key);
-            }
+        for (key, _) in &self.sprites {
+            // here next_world can be used to insert, delete or update sprites
+            match next_world.sprites.get_mut(key) {
+                Some(&mut SpriteEnum::Hero(ref mut hero)) => {
+                    hero.drift(dt_ms);
+                    next_world.updated_sprite_keys.push(key);
+                },
+                Some(&mut SpriteEnum::Box1(ref mut box1)) => {
+                    box1.drift(dt_ms);
+                    next_world.updated_sprite_keys.push(key);
+                },
+                _ => (),
+            };
         }
 
         next_world.elapsed_ms += dt_ms
