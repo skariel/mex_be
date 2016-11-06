@@ -9,18 +9,20 @@ use parking_lot::RwLock;
 use websocket::header::WebSocketProtocol;
 use websocket::{Server, Message, Sender, Receiver};
 
-use sessionid::SessionID;
-use world::{World, MsgType};
-use input::{Input, SessionInput};
+use engine::sprites::Sprite;
+use engine::sessionid::SessionID;
+use engine::input::{Input, SessionInput};
+use engine::world::{World, MsgType, Data};
+
 
 fn to_cow_str<'s>(msg: &'s Message<'s>) -> Cow<'s, str> {
     String::from_utf8_lossy(&*msg.payload)
 }
 
-pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<SessionInput>,
+pub fn listen_to_incomming_connections<I: 'static+Input, D: 'static+Data, S: 'static+Sprite<I, D>>(input_tx: mpsc::Sender<SessionInput<I>>,
                                        curr_world_is_1: Arc<AtomicBool>,
-                                       world1: Arc<RwLock<World>>,
-                                       world2: Arc<RwLock<World>>) {
+                                       world1: Arc<RwLock<World<I,D,S>>>,
+                                       world2: Arc<RwLock<World<I,D,S>>>) {
     println!("listening to incomming connections");
     let server = Server::bind("127.0.0.1:2794").unwrap();
 
@@ -66,7 +68,7 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<SessionInput>,
             let (mut sender, mut receiver) = client.split();
 
             // message to create a hero
-            input_tx.send(SessionInput{session_id: session_id, input:Input::CreateHero}).unwrap();
+            input_tx.send(SessionInput{session_id: session_id, input: I::connection_created()}).unwrap();
 
             thread::spawn(move || {
                 for message in receiver.incoming_messages() {
@@ -91,7 +93,7 @@ pub fn listen_to_incomming_connections(input_tx: mpsc::Sender<SessionInput>,
                 let msg;
                 {
                     let read_world = world.read();
-                    if !read_world.hero_keys.contains_key(&session_id) {
+                    if !read_world.data.is_ready_for_msg(&session_id) {
                         continue
                     }
                     msg = String::from(&(*read_world.as_frontend_msg(msg_type, session_id)));

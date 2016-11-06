@@ -201,6 +201,7 @@ function msg_push_as_world(msg) {
 }
 
 mex_socket.onmessage = function (event) {
+    console.log(event.data);
     if (event.data==="Hello") {
         console.log("mex socket connected");
     } else {

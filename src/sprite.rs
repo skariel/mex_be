@@ -1,3 +1,11 @@
+use stash::Stash;
+
+use engine::world::World;
+use engine::sprites::Sprite;
+use engine::input::SessionInput;
+
+use Data;
+use input::Input;
 
 #[derive(Debug, Clone, Copy)]
 pub struct Floor1 {
@@ -79,4 +87,145 @@ pub enum SpriteEnum {
     Hero(Hero),
     Floor1(Floor1),
     Box1(Box1),
+}
+
+impl Sprite<Input,Data> for SpriteEnum {
+    fn get_initial_sprites() -> Vec<Self> {
+        let mut sprites = Vec::new();
+        sprites.push(SpriteEnum::Box1(Box1 {
+            pos: (-3.0, -3.0, 0.2),
+            scale: (1.0, 0.7, 1.0),
+            rotation: (0.0, 0.0, 0.1),
+            rotates: false,
+        }));
+        sprites.push(SpriteEnum::Box1(Box1 {
+            pos: (-3.0, -2.0, 0.2),
+            scale: (1.0, 0.7, 1.0),
+            rotation: (0.0, 0.0, 0.1),
+            rotates: false,
+        }));
+        sprites.push(SpriteEnum::Box1(Box1 {
+            pos: (-3.0, -1.0, 0.2),
+            scale: (1.0, 0.7, 1.0),
+            rotation: (0.0, 0.0, 0.1),
+            rotates: false,
+        }));
+        sprites.push(SpriteEnum::Box1(Box1 {
+            pos: (-3.0, -0.0, 0.2),
+            scale: (1.0, 0.7, 1.0),
+            rotation: (0.0, 0.0, 0.1),
+            rotates: true,
+        }));
+        sprites.push(SpriteEnum::Box1(Box1 {
+            pos: (-3.0, 1.0, 0.2),
+            scale: (1.0, 0.7, 1.0),
+            rotation: (0.0, 0.0, 0.1),
+            rotates: false,
+        }));
+
+        sprites.push(SpriteEnum::Box1(Box1 {
+            pos: (1.0, -3.0, 0.2),
+            scale: (1.0, 0.7, 1.0),
+            rotation: (0.0, 0.0, 0.1),
+            rotates: false,
+        }));
+        sprites.push(SpriteEnum::Box1(Box1 {
+            pos: (1.0, -2.0, 0.2),
+            scale: (1.0, 0.7, 1.0),
+            rotation: (0.0, 0.0, 0.1),
+            rotates: false,
+        }));
+        sprites.push(SpriteEnum::Box1(Box1 {
+            pos: (1.0, -1.0, 0.2),
+            scale: (1.0, 0.7, 1.0),
+            rotation: (0.0, 0.0, 0.1),
+            rotates: false,
+        }));
+        sprites.push(SpriteEnum::Box1(Box1 {
+            pos: (1.0, -0.0, 0.2),
+            scale: (1.0, 0.7, 1.0),
+            rotation: (0.0, 0.0, 0.1),
+            rotates: false,
+        }));
+        sprites.push(SpriteEnum::Box1(Box1 {
+            pos: (3.0, 1.0, 0.2),
+            scale: (1.0, 0.7, 1.0),
+            rotation: (0.0, 0.0, 0.1),
+            rotates: false,
+        }));
+        for x in -7..7 {
+            for y in -7..7 {
+                sprites.push(SpriteEnum::Floor1(Floor1 {
+                    pos: (x as f32 * 5.0f32, y as f32 * 5.0f32),
+                }));
+            }
+        }
+        sprites
+    }
+
+    fn handle_inputs(inputs: &[SessionInput<Input>], next_world: &mut World<Input,Data,Self>) {
+        for input in inputs {
+            match input.input {
+                Input::CreateHero => {
+                    let mut sprites = &mut next_world.sprites;
+                    let hero_key = sprites.put(SpriteEnum::Hero(Hero {
+                        pos: (2.0, 2.0),
+                        up_pressed: false,
+                        down_pressed: false,
+                        left_pressed: false,
+                        right_pressed: false,
+                    }));
+                    next_world.data.hero_keys.insert(input.session_id, hero_key);
+                }
+                _ => {
+                    let mut hero_mut =  |f: &Fn(&mut Hero)->()| {
+                        if let Some(&hero_key) = next_world.data.hero_keys.get(&input.session_id) {
+                            return match *next_world.sprites.get_mut(hero_key).expect(format!("could not find sprite(hero) by key {}", hero_key).as_str()) {
+                                SpriteEnum::Hero(ref mut hero) => f(hero),
+                                _ => panic!("key {:?} does not belong to a Hero type", hero_key),
+                            }
+                        }
+                        panic!("could not find hero key for session {:?}", input.session_id);
+                    };
+                    match input.input {
+                        Input::UpPressed => hero_mut(&|h| { h.up_pressed = true }),
+                        Input::DownPressed => hero_mut(&|h| { h.down_pressed = true }),
+                        Input::LeftPressed => hero_mut(&|h| { h.left_pressed = true }),
+                        Input::RightPressed => hero_mut(&|h| { h.right_pressed = true }),
+                        Input::UpReleased => hero_mut(&|h| { h.up_pressed = false }),
+                        Input::DownReleased => hero_mut(&|h| { h.down_pressed = false }),
+                        Input::LeftReleased => hero_mut(&|h| { h.left_pressed = false }),
+                        Input::RightReleased => hero_mut(&|h| { h.right_pressed = false }),
+                        _ => (),
+                    }
+                },
+            }
+        }
+
+    }
+
+    fn handle_sprites(sprites: &Stash<Self>, next_world: &mut World<Input,Data,Self>, dt_ms:f32) {
+        for (key, _) in sprites {
+            // here next_world can be used to insert, delete or update sprites
+            match next_world.sprites.get_mut(key) {
+                Some(&mut SpriteEnum::Hero(ref mut hero)) => {
+                    hero.drift(dt_ms);
+                    next_world.updated_sprite_keys.push(key);
+                },
+                Some(&mut SpriteEnum::Box1(ref mut box1)) => {
+                    box1.drift(dt_ms);
+                    next_world.updated_sprite_keys.push(key);
+                },
+                _ => (),
+            };
+        }
+    }
+
+    fn get_sprite_msg(&self, key: usize) -> String {
+        match *self {
+            SpriteEnum::Hero(hero) => hero.as_frontend_msg(key),
+            SpriteEnum::Floor1(floor1) => floor1.as_frontend_msg(key),
+            SpriteEnum::Box1(box1) => box1.as_frontend_msg(key),
+        }
+    }
 }
