@@ -2,25 +2,298 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="670aa62e-e2e9-4a59-9ee1-c6e9d9a728d8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/engine/mainloop.rs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/web_static/fethree.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fethree.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/AnimationClipCreator.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/BlendCharacter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/BlendCharacterGui.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/BufferGeometryUtils.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/Car.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/Cloth.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/ConvexObjectBreaker.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/CurveExtras.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/Detector.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/Encodings.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/GPUComputationRenderer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/GPUParticleSystem.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/Gyroscope.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/Half.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/ImprovedNoise.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/MD2Character.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/MD2CharacterComplex.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/MarchingCubes.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/Mirror.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/MorphAnimMesh.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/MorphAnimation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/Ocean.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/Octree.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/PRNG.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/ParametricGeometries.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/RollerCoaster.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/ShaderGodRays.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/ShaderSkin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/ShaderTerrain.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/ShaderToon.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/SimplexNoise.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/SkyShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/TimelinerController.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/TypedArrayUtils.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/UCSCharacter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/Volume.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/VolumeSlice.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/WaterShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/animation/CCDIKSolver.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/animation/MMDPhysics.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/cameras/CinematicCamera.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/cameras/CombinedCamera.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/controls/DeviceOrientationControls.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/controls/DragControls.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/controls/EditorControls.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/controls/FirstPersonControls.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/controls/FlyControls.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/controls/MouseControls.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/controls/OrbitControls.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/controls/OrthographicTrackballControls.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/controls/PointerLockControls.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/controls/TrackballControls.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/controls/TransformControls.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/controls/VRControls.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/crossfade/gui.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/crossfade/scenes.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/crossfade/transition.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/curves/NURBSCurve.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/curves/NURBSSurface.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/curves/NURBSUtils.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/effects/AnaglyphEffect.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/effects/AsciiEffect.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/effects/OutlineEffect.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/effects/ParallaxBarrierEffect.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/effects/PeppersGhostEffect.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/effects/StereoEffect.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/effects/VREffect.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/exporters/OBJExporter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/exporters/STLBinaryExporter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/exporters/STLExporter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/exporters/TypedGeometryExporter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/geometries/ConvexGeometry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/geometries/DecalGeometry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/geometries/TeapotBufferGeometry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/geometries/hilbert2D.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/geometries/hilbert3D.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/ammo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/charsetencoder.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/dat.gui.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/earcut.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/inflate.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/jszip.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/msgpack-js.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/opentype.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/pnltri.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/stats.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/system.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/timeliner_gui.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/tween.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/zlib_and_gzip.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/zlib_and_gzip.min.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/3MFLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/AMFLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/AWDLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/AssimpJSONLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/BVHLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/BabylonLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/BinaryLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/ColladaLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/ColladaLoader2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/DDSLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/FBXLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/GLTFLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/HDRCubeTextureLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/KMZLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/MD2Loader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/MMDLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/MTLLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/NRRDLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/OBJLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/PCDLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/PDBLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/PLYLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/PVRLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/PlayCanvasLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/RGBELoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/STLLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/SVGLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/TGALoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/TTFLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/UTF8Loader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/VRMLLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/VTKLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/collada/Animation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/collada/AnimationHandler.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/collada/KeyFrameAnimation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/ctm/CTMLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/ctm/CTMWorker.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/ctm/ctm.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/ctm/license/OpenCTM.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/ctm/license/js-lzma.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/ctm/license/js-openctm.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/ctm/lzma.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/deprecated/SceneLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/deprecated/gltf/glTF-parser.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/deprecated/gltf/glTFAnimation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/deprecated/gltf/glTFLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/deprecated/gltf/glTFLoaderUtils.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/deprecated/gltf/glTFShaders.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/deprecated/gltf/gltfUtilities.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/sea3d/SEA3D.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/sea3d/SEA3DDeflate.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/sea3d/SEA3DLZMA.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/sea3d/SEA3DLegacy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/loaders/sea3d/SEA3DLoader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/math/ColorConverter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/math/Lut.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/modifiers/BufferSubdivisionModifier.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/modifiers/ExplodeModifier.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/modifiers/SimplifyModifier.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/modifiers/SubdivisionModifier.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/modifiers/TessellateModifier.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/AttributeNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/ConstNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/FunctionCallNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/FunctionNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/GLNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/InputNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/NodeBuilder.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/NodeLib.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/NodeMaterial.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/RawNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/TempNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/VarNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/accessors/CameraNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/accessors/ColorsNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/accessors/LightNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/accessors/NormalNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/accessors/PositionNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/accessors/ReflectNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/accessors/ScreenUVNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/accessors/UVNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/inputs/ColorNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/inputs/CubeTextureNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/inputs/FloatNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/inputs/IntNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/inputs/Matrix4Node.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/inputs/MirrorNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/inputs/ScreenNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/inputs/TextureNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/inputs/Vector2Node.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/inputs/Vector3Node.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/inputs/Vector4Node.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/materials/PhongNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/materials/PhongNodeMaterial.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/materials/StandardNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/materials/StandardNodeMaterial.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/math/Math1Node.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/math/Math2Node.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/math/Math3Node.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/math/OperatorNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/postprocessing/NodePass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/utils/BlurNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/utils/BumpNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/utils/ColorAdjustmentNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/utils/JoinNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/utils/LuminanceNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/utils/NoiseNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/utils/NormalMapNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/utils/ResolutionNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/utils/RoughnessToBlinnExponentNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/utils/SwitchNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/utils/TimerNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/nodes/utils/VelocityNode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/objects/ShadowMesh.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/pmrem/PMREMCubeUVPacker.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/pmrem/PMREMGenerator.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/AdaptiveToneMappingPass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/BloomPass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/BokehPass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/ClearPass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/CubeTexturePass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/DotScreenPass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/EffectComposer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/FilmPass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/GlitchPass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/ManualMSAARenderPass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/MaskPass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/OutlinePass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/RenderPass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/SMAAPass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/SavePass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/ShaderPass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/TAARenderPass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/TexturePass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/postprocessing/UnrealBloomPass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/renderers/CSS2DRenderer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/renderers/CSS3DRenderer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/renderers/CanvasRenderer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/renderers/Projector.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/renderers/RaytracingRenderer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/renderers/RaytracingWorker.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/renderers/SVGRenderer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/renderers/SoftwareRenderer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/renderers/WebGLDeferredRenderer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/BasicShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/BleachBypassShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/BlendShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/BokehShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/BokehShader2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/BrightnessContrastShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/ColorCorrectionShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/ColorifyShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/ConvolutionShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/CopyShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/DOFMipMapShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/DigitalGlitch.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/DotScreenShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/EdgeShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/EdgeShader2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/FXAAShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/FilmShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/FocusShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/FresnelShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/GammaCorrectionShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/HorizontalBlurShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/HorizontalTiltShiftShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/HueSaturationShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/KaleidoShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/LuminosityHighPassShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/LuminosityShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/MirrorShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/NormalMapShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/OceanShaders.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/ParallaxShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/RGBShiftShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/SMAAShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/SSAOShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/SepiaShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/TechnicolorShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/ToneMapShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/TriangleBlurShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/UnpackDepthRGBAShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/VerticalBlurShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/VerticalTiltShiftShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/shaders/VignetteShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/utils/GeometryUtils.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/utils/ImageUtils.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/utils/ShadowMapViewer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/utils/UVsDebug.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/vr/PaintViveController.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/vr/ViveController.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/vr/WebVR.js" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/images/box_3.png" afterPath="$PROJECT_DIR$/src/web_static/images/box_3.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/images/floor_1.jpg" afterPath="$PROJECT_DIR$/src/web_static/images/floor_1.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/mainthree.js" afterPath="$PROJECT_DIR$/src/web_static/mainthree.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/stats.min.js" afterPath="$PROJECT_DIR$/src/web_static/vendors/stats.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/three.min.js" afterPath="$PROJECT_DIR$/src/web_static/vendors/three.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Cargo__mex_be_.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Cargo__mex_be_.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/connections.rs" afterPath="$PROJECT_DIR$/src/engine/connections.rs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/input.rs" afterPath="$PROJECT_DIR$/src/engine/input.rs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/mod.rs" afterPath="$PROJECT_DIR$/src/engine/mod.rs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/sprites.rs" afterPath="$PROJECT_DIR$/src/engine/sprites.rs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/world.rs" afterPath="$PROJECT_DIR$/src/engine/world.rs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fethree.html" afterPath="$PROJECT_DIR$/src/fethree.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/MD2Character.js" afterPath="$PROJECT_DIR$/src/js/MD2Character.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/MD2CharacterComplex.js" afterPath="$PROJECT_DIR$/src/js/MD2CharacterComplex.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/MarchingCubes.js" afterPath="$PROJECT_DIR$/src/js/MarchingCubes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/Mirror.js" afterPath="$PROJECT_DIR$/src/js/Mirror.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/loaders/SVGLoader.js" afterPath="$PROJECT_DIR$/src/js/loaders/SVGLoader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/postprocessing/SMAAPass.js" afterPath="$PROJECT_DIR$/src/js/postprocessing/SMAAPass.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/shaders/LuminosityHighPassShader.js" afterPath="$PROJECT_DIR$/src/js/shaders/LuminosityHighPassShader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/shaders/SMAAShader.js" afterPath="$PROJECT_DIR$/src/js/shaders/SMAAShader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.rs" afterPath="$PROJECT_DIR$/src/main.rs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sprite.rs" afterPath="$PROJECT_DIR$/src/sprite.rs" />
     </list>
     <ignored path="mex_be.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,78 +328,8 @@
       <file leaf-file-name="main.rs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mod.rs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/engine/mod.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mainloop.rs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/engine/mainloop.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sessionid.rs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/engine/sessionid.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="world.rs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/engine/world.rs">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mainthree.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainthree.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3315">
-              <caret line="221" column="0" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sprites.rs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/engine/sprites.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="connections.rs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/engine/connections.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1425">
-              <caret line="95" column="40" selection-start-line="95" selection-start-column="40" selection-end-line="95" selection-end-column="40" />
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -135,8 +338,28 @@
       <file leaf-file-name="sprite.rs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sprite.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+            <state relative-caret-position="732">
+              <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mainthree.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/web_static/mainthree.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1125">
+              <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fethree.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/web_static/fethree.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -172,18 +395,20 @@
         <option value="$PROJECT_DIR$/Cargo.toml" />
         <option value="$PROJECT_DIR$/src/sessionid.rs" />
         <option value="$PROJECT_DIR$/src/connections.rs" />
-        <option value="$PROJECT_DIR$/src/fethree.html" />
         <option value="$PROJECT_DIR$/src/world.rs" />
         <option value="$PROJECT_DIR$/src/engine/input.rs" />
         <option value="$PROJECT_DIR$/src/engine/connections.rs" />
         <option value="$PROJECT_DIR$/src/input.rs" />
         <option value="$PROJECT_DIR$/src/sprite.rs" />
         <option value="$PROJECT_DIR$/src/engine/sprites.rs" />
-        <option value="$PROJECT_DIR$/src/mainthree.js" />
         <option value="$PROJECT_DIR$/src/engine/mod.rs" />
         <option value="$PROJECT_DIR$/src/engine/world.rs" />
         <option value="$PROJECT_DIR$/src/engine/mainloop.rs" />
         <option value="$PROJECT_DIR$/src/main.rs" />
+        <option value="$PROJECT_DIR$/src/mainthree.js" />
+        <option value="$PROJECT_DIR$/src/fethree.html" />
+        <option value="$PROJECT_DIR$/src/web_static/fethree.html" />
+        <option value="$PROJECT_DIR$/src/web_static/mainthree.js" />
       </list>
     </option>
   </component>
@@ -263,24 +488,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mex_be" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mex_be" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -293,13 +500,15 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/engine" />
-      <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/images" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/web_static/vendors" />
+      <recent name="$PROJECT_DIR$/src/web_static" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/engine/js" />
+      <recent name="$PROJECT_DIR$/src/engine" />
     </key>
   </component>
   <component name="RunManager" selected="Cargo Command.Run mex_be">
@@ -769,7 +978,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478463099095</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="more decoupling">
+      <created>1478547873740</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1478547873740</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TodoView">
@@ -862,7 +1078,8 @@
     <MESSAGE value="rotation" />
     <MESSAGE value="more refactoring" />
     <MESSAGE value="engine mostly decoupled" />
-    <option name="LAST_COMMIT_MESSAGE" value="engine mostly decoupled" />
+    <MESSAGE value="more decoupling" />
+    <option name="LAST_COMMIT_MESSAGE" value="more decoupling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1070,17 +1287,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/three.min.js">
+    <entry file="file://$PROJECT_DIR$/src/web_static/vendors/three.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fethree.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -1095,14 +1305,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="51" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/input.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -1132,22 +1334,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/world.rs" />
-    <entry file="file://$PROJECT_DIR$/src/mainthree.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3315">
-          <caret line="221" column="0" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sprite.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/mod.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -1172,10 +1358,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/input.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sprite.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="732">
+          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/web_static/fethree.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/web_static/mainthree.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1125">
+          <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        <state relative-caret-position="135">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
