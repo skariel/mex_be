@@ -11,6 +11,7 @@ use input::Input;
 pub struct Floor1 {
     pub pos: (f32, f32),
 }
+
 impl Floor1 {
     pub fn as_frontend_msg(&self, key: usize) -> String {
         format!("{{\"type\":\"floor1\",\"key\":{},\"pos\":[{},{}]}}",
@@ -28,6 +29,7 @@ pub struct Box1 {
     pub rotation: (f32, f32, f32),
     pub rotates: bool,
 }
+
 impl Box1 {
     pub fn as_frontend_msg(&self, key: usize) -> String {
         format!("{{\"type\":\"box1\",\"key\":{},\"pos\":[{},{},{}],\"scale\":[{},{},{}],\
@@ -58,6 +60,7 @@ pub struct Hero {
     pub left_pressed: bool,
     pub right_pressed: bool,
 }
+
 impl Hero {
     pub fn drift(&mut self, dt_ms: f32) {
         let fact = 0.05 * 0.05 * dt_ms;
@@ -89,7 +92,7 @@ pub enum SpriteEnum {
     Box1(Box1),
 }
 
-impl Sprite<Input,Data> for SpriteEnum {
+impl Sprite<Input, Data> for SpriteEnum {
     fn get_initial_sprites() -> Vec<Self> {
         let mut sprites = Vec::new();
         sprites.push(SpriteEnum::Box1(Box1 {
@@ -163,7 +166,7 @@ impl Sprite<Input,Data> for SpriteEnum {
         sprites
     }
 
-    fn handle_inputs(inputs: &[SessionInput<Input>], next_world: &mut World<Input,Data,Self>) {
+    fn handle_inputs(inputs: &[SessionInput<Input>], next_world: &mut World<Input, Data, Self>) {
         for input in inputs {
             match input.input {
                 Input::CreateHero => {
@@ -178,7 +181,7 @@ impl Sprite<Input,Data> for SpriteEnum {
                     next_world.data.hero_keys.insert(input.session_id, hero_key);
                 }
                 _ => {
-                    let mut hero_mut =  |f: &Fn(&mut Hero)->()| {
+                    let mut hero_mut = |f: &Fn(&mut Hero) -> ()| {
                         if let Some(&hero_key) = next_world.data.hero_keys.get(&input.session_id) {
                             return match *next_world.sprites.get_mut(hero_key).expect(format!("could not find sprite(hero) by key {}", hero_key).as_str()) {
                                 SpriteEnum::Hero(ref mut hero) => f(hero),
@@ -201,10 +204,9 @@ impl Sprite<Input,Data> for SpriteEnum {
                 },
             }
         }
-
     }
 
-    fn handle_sprites(sprites: &Stash<Self>, next_world: &mut World<Input,Data,Self>, dt_ms:f32) {
+    fn handle_sprites(sprites: &Stash<Self>, next_world: &mut World<Input, Data, Self>, dt_ms: f32) {
         for (key, _) in sprites {
             // here next_world can be used to insert, delete or update sprites
             match next_world.sprites.get_mut(key) {

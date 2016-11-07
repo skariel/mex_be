@@ -19,10 +19,10 @@ fn to_cow_str<'s>(msg: &'s Message<'s>) -> Cow<'s, str> {
     String::from_utf8_lossy(&*msg.payload)
 }
 
-pub fn listen_to_incomming_connections<I: 'static+Input, D: 'static+Data, S: 'static+Sprite<I, D>>(input_tx: mpsc::Sender<SessionInput<I>>,
-                                       curr_world_is_1: Arc<AtomicBool>,
-                                       world1: Arc<RwLock<World<I,D,S>>>,
-                                       world2: Arc<RwLock<World<I,D,S>>>) {
+pub fn listen_to_incomming_connections<I: 'static + Input, D: 'static + Data, S: 'static + Sprite<I, D>>(input_tx: mpsc::Sender<SessionInput<I>>,
+                                                                                                         curr_world_is_1: Arc<AtomicBool>,
+                                                                                                         world1: Arc<RwLock<World<I, D, S>>>,
+                                                                                                         world2: Arc<RwLock<World<I, D, S>>>) {
     println!("listening to incomming connections");
     let server = Server::bind("127.0.0.1:2794").unwrap();
 
@@ -52,7 +52,7 @@ pub fn listen_to_incomming_connections<I: 'static+Input, D: 'static+Data, S: 'st
 
             let session_id = SessionID::new();
 
-            let mut client =response.send().unwrap();
+            let mut client = response.send().unwrap();
 
             let ip = client.get_mut_sender()
                 .get_mut()
@@ -68,7 +68,7 @@ pub fn listen_to_incomming_connections<I: 'static+Input, D: 'static+Data, S: 'st
             let (mut sender, mut receiver) = client.split();
 
             // message to create a hero
-            input_tx.send(SessionInput{session_id: session_id, input: I::connection_created()}).unwrap();
+            input_tx.send(SessionInput { session_id: session_id, input: I::connection_created() }).unwrap();
 
             thread::spawn(move || {
                 for message in receiver.incoming_messages() {
@@ -76,7 +76,7 @@ pub fn listen_to_incomming_connections<I: 'static+Input, D: 'static+Data, S: 'st
 
                     // get the message text
                     if let Some(input) = Input::from_str(&*to_cow_str(&message)) {
-                        input_tx.send(SessionInput{session_id: session_id, input: input}).unwrap();
+                        input_tx.send(SessionInput { session_id: session_id, input: input }).unwrap();
                         continue;
                     }
                 }
